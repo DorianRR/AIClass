@@ -4,7 +4,7 @@
 #include "ofMain.h"
 
 
-static class ofAppHelpers
+class ofAppHelpers
 {
 
 public:

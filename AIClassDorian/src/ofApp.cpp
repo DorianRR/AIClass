@@ -5,37 +5,53 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
 
+	Mode = DefaultMode;
+	DynamicSeek.addListener(this, &ofApp::RunDynamicSeek);
 
 
+	GUI.setup();
+	GUI.add(DynamicSeek.setup("Dynamic Seek"));
 
-/*
+}
 
-	Kinematic temp1;
-	temp1.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
-	Kinematic temp2;
-	temp2.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
-	Kinematic temp3;
-	temp3.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
-
-	MobileBoids.push_back(temp1);
-	MobileBoids.push_back(temp2);
-	MobileBoids.push_back(temp3);
-
-*/
+void ofApp::RunDynamicSeek()
+{
+	Mode = DynamicSeekMode;
+	SetupHelpers::DynamicSeekSetup(&MobileBoids);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() 
 {
+	switch (Mode)
+	{
+	case DefaultMode:
+
+		break;
 
 
-
+	case DynamicSeekMode:
+		break;
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+	GUI.draw();
+	
+	
+	switch (Mode)
+	{
+	case DefaultMode:
 
-	ofAppHelpers::DrawBoids(MobileBoids);
+		break;
+
+
+	case DynamicSeekMode:
+		ofAppHelpers::DrawBoids(MobileBoids);
+
+		break;
+	}
 	
 	
 }
@@ -95,3 +111,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo) {
 
 }
 
+void ofApp::Clear()
+{
+
+}
