@@ -180,9 +180,8 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Kinematic.cpp" />
-    <ClCompile Include="ofAppHelpers.cpp" />
-    <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="DataStructs\Kinematic.cpp" />
+    <ClCompile Include="Helpers\ofAppHelpers.cpp" />
     <ClCompile Include="SetupHelpers.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -196,13 +195,11 @@
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="Steering\Seek.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DynamicSteering.h" />
-    <ClInclude Include="Kinematic.h" />
-    <ClInclude Include="KinematicSteering.h" />
-    <ClInclude Include="ofAppHelpers.h" />
-    <ClInclude Include="Seek.h" />
+    <ClInclude Include="DataStructs\Kinematic.h" />
+    <ClInclude Include="Helpers\ofAppHelpers.h" />
     <ClInclude Include="SetupHelpers.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
@@ -216,6 +213,9 @@
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxToggle.h" />
+    <ClInclude Include="Steering\DynamicSteering.h" />
+    <ClInclude Include="Steering\KinematicSteering.h" />
+    <ClInclude Include="Steering\Seek.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

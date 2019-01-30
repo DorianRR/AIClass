@@ -6,14 +6,14 @@
 #include "ofxGui.h"
 
 //Kinematic
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Kinematic.h"
+#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\DataStructs\Kinematic.h"
 
 //Helpers
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\ofAppHelpers.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\SetupHelpers.h"
+#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\ofAppHelpers.h"
+#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\setupHelpers.h"
 
 //Modes
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Seek.h"
+#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Seek.h"
 
 
 class ofApp : public ofBaseApp {
