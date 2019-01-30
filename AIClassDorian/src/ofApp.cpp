@@ -1,8 +1,15 @@
 #include "ofApp.h"
 
 
+
 //--------------------------------------------------------------
 void ofApp::setup() {
+
+
+
+
+/*
+
 	Kinematic temp1;
 	temp1.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
 	Kinematic temp2;
@@ -14,11 +21,12 @@ void ofApp::setup() {
 	MobileBoids.push_back(temp2);
 	MobileBoids.push_back(temp3);
 
-
+*/
 }
 
 //--------------------------------------------------------------
-void ofApp::update() {
+void ofApp::update() 
+{
 
 
 
