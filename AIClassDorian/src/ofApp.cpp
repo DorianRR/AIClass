@@ -5,99 +5,149 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
 	timer = 0;
-	Mode = DefaultMode;
-	DynamicSeek.addListener(this, &ofApp::RunDynamicSeek);
-	WanderButton.addListener(this, &ofApp::RunWander);
+	Mode = default;
+	DynamicSeek1.addListener(this, &ofApp::RunDynamicSeek1);
+	DynamicSeek2.addListener(this, &ofApp::RunDynamicSeek2);
+	WanderButton1.addListener(this, &ofApp::RunWander1);
+	WanderButton2.addListener(this, &ofApp::RunWander2);
 	FlockButton.addListener(this, &ofApp::RunFlock);
+	KinematicMove.addListener(this, &ofApp::RunKinematic);
 
 	GUI.setup();
-	GUI.add(DynamicSeek.setup("Dynamic Seek Mode"));
-	GUI.add(WanderButton.setup("Wander Mode"));
+	GUI.add(KinematicMove.setup("Kinematic Move"));
+	GUI.add(DynamicSeek1.setup("Dynamic Seek Mode 1"));
+	GUI.add(DynamicSeek2.setup("Dynamic Seek Mode 2"));
+	GUI.add(WanderButton1.setup("Wander Mode 1"));
+	GUI.add(WanderButton2.setup("Wander Mode 2"));
 	GUI.add(FlockButton.setup("Flock Mode"));
-
-	
-//	SeekTarget = Kinematic();
-	
+	GUI.add(SpeedSlider.setup("Max Boid Speed", 30, 5, 50));
 }
 
-void ofApp::RunDynamicSeek()
+void ofApp::RunKinematic()
 {
-	Mode = DynamicSeekMode;
+	Mode = DefaultMode;
+	SetupHelpers::DynamicSeekSetup(&MobileBoids);
+	MobileBoids[0].Position = ofVec2f(50, 50);
+	SetupHelpers::InitializeCrumbs(&Crumbs, 1000);
+}
+
+void ofApp::RunDynamicSeek1()
+
+{
+	Mode = DynamicSeekMode1;
 	SetupHelpers::DynamicSeekSetup(&MobileBoids);
 	SetupHelpers::InitializeCrumbs(&Crumbs, 1000);
 }
 
-void ofApp::RunWander()
+void ofApp::RunDynamicSeek2()
+
 {
-	Mode = WanderMode;
+	Mode = DynamicSeekMode1;
+	SetupHelpers::DynamicSeekSetup(&MobileBoids);
+	SetupHelpers::InitializeCrumbs(&Crumbs, 1000);
+}
+
+
+void ofApp::RunWander1()
+{
+	Mode = WanderMode1;
 	SetupHelpers::WanderSetup(&MobileBoids, 5);
 	SetupHelpers::InitializeCrumbs(&Crumbs, 1000);
+}
 
+void ofApp::RunWander2()
+{
+	Mode = WanderMode1;
+	SetupHelpers::WanderSetup(&MobileBoids, 5);
+	SetupHelpers::InitializeCrumbs(&Crumbs, 1000);
 }
 
 void ofApp::RunFlock()
 {
 	Mode = FlockMode;
 	FlockLeader.Radius = 15;
-	FlockLeader.Position = ofVec2f(500,360);
+	FlockLeader.Position = ofVec2f(500, 360);
 	FlockLeader.Color = ofColor::green;
 
-	SetupHelpers::FlockSetup(&MobileBoids, 8);
+	SetupHelpers::FlockSetup(&MobileBoids, 5);
 	SetupHelpers::InitializeCrumbs(&Crumbs, 1000);
 }
 
 //--------------------------------------------------------------
 void ofApp::update()
 {
-	float temp = ofGetLastFrameTime()*10;
-
+	float temp = ofGetLastFrameTime() * 10;
+	MaxSpeed = SpeedSlider;
 
 	switch (Mode)
 	{
 	case DefaultMode:
-
+		SeekTarget.Position = ofVec2f(700,700);
+		MobileBoids[0].ProcessSteering(Seek::GetDynamicSteering(MobileBoids[0], SeekTarget, 100, 200, 100, 5, temp), MaxSpeed, temp);
 		break;
 
 
-	case DynamicSeekMode:
-		
+	case DynamicSeekMode1:
 		SeekTarget.Position = ofVec2f(ofApp::mouseX, ofApp::mouseY);
-		//MobileBoids[0].ProcessSteering(Seek::GetDynamicSteering(MobileBoids[0], SeekTarget, 100, 200, 5, temp), temp);
-		MobileBoids[0].ProcessSteering(Seek::GetDynamicSteering(MobileBoids[0], SeekTarget, 100, 200, 100, 5, temp), temp);
-		
-
+		MobileBoids[0].ProcessSteering(Seek::GetDynamicSteering(MobileBoids[0], SeekTarget, 100, 200, 5, temp), MaxSpeed, temp);
 		break;
-	case WanderMode:
+
+
+	case DynamicSeekMode2:
+		SeekTarget.Position = ofVec2f(ofApp::mouseX, ofApp::mouseY);
+		MobileBoids[0].ProcessSteering(Seek::GetDynamicSteering(MobileBoids[0], SeekTarget, 100, 200, 100, 5, temp), MaxSpeed, temp);
+		break;
+
+
+	case WanderMode1:
 		for (int i = 0; i != MobileBoids.size(); i++)
 		{
 			ofAppHelpers::CheckForOnScreen(&MobileBoids);
-			MobileBoids[i].ProcessSteering(Wander::GetDynamicSteering(MobileBoids[i], .5, 25, temp), temp);
+			MobileBoids[i].ProcessSteering(Wander::GetDynamicSteering(MobileBoids[i], .5, 25, temp), MaxSpeed, temp);
 		}
-		
-
 		break;
-	case FlockMode:
 
-		SeekTarget.Position = ofVec2f(ofApp::mouseX, ofApp::mouseY);
 
-		FlockLeader.ProcessSteering(Seek::GetDynamicSteering(FlockLeader, SeekTarget, 100, 200, 100, 5, temp), temp);
-
+	case WanderMode2:
 		for (int i = 0; i != MobileBoids.size(); i++)
 		{
 			ofAppHelpers::CheckForOnScreen(&MobileBoids);
-			DynamicSteering Avoid = Flee::GetDynamicSteering(MobileBoids[i], MobileBoids, 100, 200, 50, temp);
+			MobileBoids[i].ProcessSteering(Wander::GetDynamicSteering(MobileBoids[i], .25, 25, temp), MaxSpeed, temp);
+		}
+		break;
+
+
+	case FlockMode:
+		SeekTarget.Position = ofVec2f(ofApp::mouseX, ofApp::mouseY);
+		FlockLeader.ProcessSteering(Seek::GetDynamicSteering(FlockLeader, SeekTarget, 100, 200, 100, 5, temp), MaxSpeed, temp);
+		//FlockLeader.ProcessSteering(Wander::GetDynamicSteering(FlockLeader, .5, 25, temp), MaxSpeed, temp);
+
+		for (int i = 0; i != MobileBoids.size(); i++)
+		{
+			DynamicSteering Avoid; 
+			if (timer > ofRandom(0.07, 0.13))
+			{
+				if (ofRandom(0, 1) > 0.75){	}
+				else
+				{
+					Avoid = Flee::GetDynamicSteering(MobileBoids[i], MobileBoids, 500, 500, 150, temp);
+				}
+			}
+			DynamicSteering Final;
+			ofAppHelpers::CheckForOnScreen(&MobileBoids);
 			DynamicSteering VelocityMatch = Matching::MatchVelocity(MobileBoids[i], FlockLeader, 100, 10, temp);
 			DynamicSteering SeekLeader = Seek::GetDynamicSteering(MobileBoids[i], FlockLeader, 100, 200, 100, 5, temp);
-			DynamicSteering Final;
-			Final.Velocity = (Avoid.Velocity*3 + SeekLeader.Velocity/5 + VelocityMatch.Velocity).normalized() * 50;
-			//Final.Orientation = Orientation::GetAllignAngle(Final.Velocity);
-			MobileBoids[i].ProcessSteering(Final, temp);
-		}
+			Final.Velocity = (Avoid.Velocity + VelocityMatch.Velocity + SeekLeader.Velocity*7.5).getNormalized() * MaxSpeed;
 
+			Final.Orientation = Orientation::GetAllignAngle(Final.Velocity);
+			MobileBoids[i].ProcessSteering(Final, MaxSpeed, temp);
+		}
+		break;
+
+
+	default:
 		break;
 	}
-
-	
 }
 
 //--------------------------------------------------------------
@@ -111,10 +161,6 @@ void ofApp::draw() {
 	switch (Mode)
 	{
 	case DefaultMode:
-		break;
-
-
-	case DynamicSeekMode:
 		ofAppHelpers::DrawBoids(MobileBoids);
 		if (timer > .33)
 		{
@@ -125,7 +171,7 @@ void ofApp::draw() {
 		break;
 
 
-	case WanderMode:
+	case DynamicSeekMode1:
 		ofAppHelpers::DrawBoids(MobileBoids);
 		if (timer > .33)
 		{
@@ -134,6 +180,40 @@ void ofApp::draw() {
 		}
 		ofAppHelpers::UpdateAndDrawCrumbs(&Crumbs, temp);
 		break;
+
+
+	case DynamicSeekMode2:
+		ofAppHelpers::DrawBoids(MobileBoids);
+		if (timer > .33)
+		{
+			ofAppHelpers::LeaveCrumbs(MobileBoids, &Crumbs);
+			timer = 0;
+		}
+		ofAppHelpers::UpdateAndDrawCrumbs(&Crumbs, temp);
+		break;
+
+
+	case WanderMode1:
+		ofAppHelpers::DrawBoids(MobileBoids);
+		if (timer > .33)
+		{
+			ofAppHelpers::LeaveCrumbs(MobileBoids, &Crumbs);
+			timer = 0;
+		}
+		ofAppHelpers::UpdateAndDrawCrumbs(&Crumbs, temp);
+		break;
+
+	case WanderMode2:
+		ofAppHelpers::DrawBoids(MobileBoids);
+		if (timer > .33)
+		{
+			ofAppHelpers::LeaveCrumbs(MobileBoids, &Crumbs);
+			timer = 0;
+		}
+		ofAppHelpers::UpdateAndDrawCrumbs(&Crumbs, temp);
+		break;
+
+
 	case FlockMode:
 		ofAppHelpers::DrawBoid(FlockLeader);
 		ofAppHelpers::DrawBoids(MobileBoids);
@@ -172,7 +252,7 @@ void ofApp::mouseDragged(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
-	
+
 
 }
 

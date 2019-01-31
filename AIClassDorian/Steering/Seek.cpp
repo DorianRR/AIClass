@@ -36,6 +36,7 @@ DynamicSteering Seek::GetDynamicSteering(Kinematic MyObject, Kinematic Target, f
 	float DistanceBtwKin = Target.Position.distance(MyObject.Position);
 	if (DistanceBtwKin <= StopRadius)
 	{
+		MyObject.Velocity = ofVec2f::zero();
 		return DynStr;
 	}
 	else

@@ -11,14 +11,14 @@ DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, Kinematic Target, f
 	}
 	else
 	{
-		ofVec2f Direction = (Target.Position - MyObject.Position).getNormalized();
-		Direction *= MaxAccel * DeltaTime;
-		Direction += MyObject.Velocity / 3.5;
+		ofVec2f Direction = (Target.Position - MyObject.Position).getNormalized() * (MaxDistance/3) / (Target.Position - MyObject.Position).length();
+		Direction *= MaxAccel;
+		//Direction += MyObject.Velocity / 3.5;
 		if (Direction.length() > MaxSpeed)
 		{
 			Direction /= (Direction.length() / MaxSpeed);
 		}
-		DynStr.Velocity = -Direction;
+		DynStr.Velocity = Direction;
 		DynStr.Orientation = -Orientation::GetDynamicFace(MyObject, Target, MaxAccel, DeltaTime);
 
 	}
@@ -39,12 +39,11 @@ DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, std::vector<Kinemat
 		}
 		else
 		{
-			Direction += (Targets[i].Position - MyObject.Position).getNormalized() * MaxDistance/(Targets[i].Position - MyObject.Position).length();	
+			Direction += (Targets[i].Position - MyObject.Position).getNormalized() * (MaxDistance/3)/(Targets[i].Position - MyObject.Position).length();	
 
 		}
 	}
-	Direction *= MaxAccel * DeltaTime ;
-	Direction += MyObject.Velocity / 3.5;
+	Direction *= MaxAccel;
 	if (Direction.length() > MaxSpeed)
 	{
 		Direction /= (Direction.length() / MaxSpeed);
@@ -54,48 +53,3 @@ DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, std::vector<Kinemat
 	return DynStr;
 
 }
-
-//
-//
-//DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxAccel, float MaxSpeed, float SlowRadius, float MaxDistance, float DeltaTime)
-//{
-//	DynamicSteering DynStr = DynamicSteering();
-//	float DistanceBtwKin = Target.Position.distance(MyObject.Position);
-//	if (DistanceBtwKin >= MaxDistance)
-//	{
-//		return DynStr;
-//	}
-//	else
-//	{
-//		if (DistanceBtwKin <= SlowRadius)
-//		{
-//			ofVec2f Direction = (Target.Position - MyObject.Position).getNormalized();
-//			Direction *= MaxAccel * DeltaTime;
-//			Direction += MyObject.Velocity / 3.5;
-//			if (Direction.length() > MaxSpeed)
-//			{
-//				Direction /= (Direction.length() / MaxSpeed);
-//			}
-//			DynStr.Velocity = Direction;
-//			DynStr.Velocity /= (SlowRadius / DistanceBtwKin);
-//			DynStr.Orientation = Orientation::GetDynamicFace(MyObject, Target, MaxAccel, DeltaTime);
-//		}
-//		else
-//		{
-//			ofVec2f Direction = (Target.Position - MyObject.Position).getNormalized();
-//			Direction *= MaxAccel * DeltaTime;
-//			Direction += MyObject.Velocity / 3.5;
-//			if (Direction.length() > MaxSpeed)
-//			{
-//				Direction /= (Direction.length() / MaxSpeed);
-//			}
-//			DynStr.Velocity = Direction;
-//			DynStr.Orientation = Orientation::GetDynamicFace(MyObject, Target, MaxAccel, DeltaTime);
-//		}
-//
-//
-//	}
-//	return DynStr;
-//
-//}
-

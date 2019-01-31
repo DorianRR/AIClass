@@ -31,6 +31,6 @@ public:
 	Kinematic(ofVec2f position, ofVec2f velocity, float orientation, float rotation);
 
 
-	void ProcessSteering(DynamicSteering DynStr, float DeltaTime);
+	void ProcessSteering(DynamicSteering DynStr, float MaxSpeed, float DeltaTime);
 	
 };

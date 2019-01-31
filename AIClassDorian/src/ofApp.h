@@ -13,6 +13,7 @@
 //Helpers
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\ofAppHelpers.h"
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\SetupHelpers.h"
+#include "ofVec2f.h"
 
 //Modes
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Seek.h"
@@ -30,15 +31,15 @@ public:
 
 	enum Configuration
 	{
-		DefaultMode, DynamicSeekMode, WanderMode, FlockMode
+		DefaultMode, DynamicSeekMode1, DynamicSeekMode2, WanderMode1, WanderMode2, FlockMode, default
 	};
-
+	float MaxSpeed;
 
 	std::vector<Kinematic> MobileBoids;
 	std::vector<Kinematic> StationaryKinematics;
 	std::vector<Crumb> Crumbs;
-	Kinematic FlockLeader;
 
+	Kinematic FlockLeader;
 	Kinematic SeekTarget;
 
 	void setup();
@@ -58,19 +59,28 @@ public:
 	void gotMessage(ofMessage msg);
 
 
-	void RunDynamicSeek();
-	void RunWander();
+	void RunKinematic();
+	void RunDynamicSeek1();
+	void RunDynamicSeek2();
+	void RunWander1();
+	void RunWander2();
+	
+
 	void RunFlock();
+
 
 
 	ofxPanel GUI;
 
 	ofxButton Clear;
-	ofxButton DynamicSeek;
-	ofxButton WanderButton;
+	ofxButton KinematicMove;
+	ofxButton DynamicSeek1;
+	ofxButton DynamicSeek2;
+	ofxButton WanderButton1;
+	ofxButton WanderButton2;
 	ofxButton FlockButton;
 
-
+	ofxFloatSlider SpeedSlider;
 
 
 private:
