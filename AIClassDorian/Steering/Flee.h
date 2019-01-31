@@ -19,5 +19,6 @@ class Flee {
 public:
 	static DynamicSteering GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxAccel, float MaxSpeed, float MaxDistance, float DeltaTime);
 	
+	static DynamicSteering GetDynamicSteering(Kinematic MyObject, std::vector<Kinematic> Targets, float MaxAccel, float MaxSpeed, float MaxDistance, float DeltaTime);
 
 };

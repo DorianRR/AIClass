@@ -16,7 +16,7 @@ void ofApp::setup() {
 	GUI.add(FlockButton.setup("Flock Mode"));
 
 	
-	SeekTarget = Kinematic();
+//	SeekTarget = Kinematic();
 	
 }
 
@@ -38,7 +38,12 @@ void ofApp::RunWander()
 void ofApp::RunFlock()
 {
 	Mode = FlockMode;
-	//SetupHelpers::WanderSetup(&MobileBoids, 5);
+	FlockLeader.Radius = 15;
+	FlockLeader.Position = ofVec2f(500,360);
+	FlockLeader.Color = ofColor::green;
+
+	SetupHelpers::FlockSetup(&MobileBoids, 8);
+	SetupHelpers::InitializeCrumbs(&Crumbs, 1000);
 }
 
 //--------------------------------------------------------------
@@ -72,12 +77,22 @@ void ofApp::update()
 
 		break;
 	case FlockMode:
-		/*for (int i = 0; i != MobileBoids.size(); i++)
-		{
-			ofAppHelpers::CheckForOnScreen(MobileBoids);
-			MobileBoids[i].ProcessSteering(Wander::GetDynamicSteering(MobileBoids[i], .5, 25, temp), temp);
-		}*/
 
+		SeekTarget.Position = ofVec2f(ofApp::mouseX, ofApp::mouseY);
+
+		FlockLeader.ProcessSteering(Seek::GetDynamicSteering(FlockLeader, SeekTarget, 100, 200, 100, 5, temp), temp);
+
+		for (int i = 0; i != MobileBoids.size(); i++)
+		{
+			ofAppHelpers::CheckForOnScreen(&MobileBoids);
+			DynamicSteering Avoid = Flee::GetDynamicSteering(MobileBoids[i], MobileBoids, 100, 200, 50, temp);
+			DynamicSteering VelocityMatch = Matching::MatchVelocity(MobileBoids[i], FlockLeader, 100, 10, temp);
+			DynamicSteering SeekLeader = Seek::GetDynamicSteering(MobileBoids[i], FlockLeader, 100, 200, 100, 5, temp);
+			DynamicSteering Final;
+			Final.Velocity = (Avoid.Velocity*3 + SeekLeader.Velocity/5 + VelocityMatch.Velocity).normalized() * 50;
+			//Final.Orientation = Orientation::GetAllignAngle(Final.Velocity);
+			MobileBoids[i].ProcessSteering(Final, temp);
+		}
 
 		break;
 	}
@@ -118,6 +133,17 @@ void ofApp::draw() {
 			timer = 0;
 		}
 		ofAppHelpers::UpdateAndDrawCrumbs(&Crumbs, temp);
+		break;
+	case FlockMode:
+		ofAppHelpers::DrawBoid(FlockLeader);
+		ofAppHelpers::DrawBoids(MobileBoids);
+		if (timer > .33)
+		{
+			ofAppHelpers::LeaveCrumbs(MobileBoids, &Crumbs);
+			timer = 0;
+		}
+		ofAppHelpers::UpdateAndDrawCrumbs(&Crumbs, temp);
+
 		break;
 	}
 

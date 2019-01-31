@@ -16,9 +16,25 @@ void ofAppHelpers::DrawBoids(std::vector<Kinematic> boidsToDraw)
 			ofVec2f x3 = boidsToDraw[i].Position + temp.getNormalized() * 20;
 
 			ofDrawTriangle(x1, x2, x3);
-			//ofSetColor(ofColor::floralWhite);
 		}
-		
+	}
+}
+
+
+void ofAppHelpers::DrawBoid(Kinematic boidToDraw)
+{
+	
+	if (boidToDraw.GetDrawn)
+	{
+		ofSetColor(boidToDraw.Color);
+		ofDrawCircle(boidToDraw.Position, boidToDraw.Radius);
+
+		ofVec2f temp = ofVec2f(cos(boidToDraw.Orientation), sin(boidToDraw.Orientation));
+		ofVec2f x1 = boidToDraw.Position + ofVec2f(temp.y, temp.x *-1).getNormalized() * 10;
+		ofVec2f x2 = boidToDraw.Position + ofVec2f(-temp.y, temp.x).getNormalized() * 10;
+		ofVec2f x3 = boidToDraw.Position + temp.getNormalized() * 20;
+
+		ofDrawTriangle(x1, x2, x3);
 	}
 }
 

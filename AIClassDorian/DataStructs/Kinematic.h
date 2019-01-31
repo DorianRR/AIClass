@@ -32,4 +32,5 @@ public:
 
 
 	void ProcessSteering(DynamicSteering DynStr, float DeltaTime);
+	
 };

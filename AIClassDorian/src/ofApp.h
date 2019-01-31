@@ -17,6 +17,9 @@
 //Modes
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Seek.h"
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Wander.h"
+#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Flee.h"
+#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Matching.h"
+
 
 
 
@@ -34,6 +37,7 @@ public:
 	std::vector<Kinematic> MobileBoids;
 	std::vector<Kinematic> StationaryKinematics;
 	std::vector<Crumb> Crumbs;
+	Kinematic FlockLeader;
 
 	Kinematic SeekTarget;
 

@@ -60,8 +60,17 @@ Kinematic::Kinematic(ofVec2f position, ofVec2f velocity, float orientation, floa
 
 void Kinematic::ProcessSteering(DynamicSteering DynamSteer, float DeltaTime)
 {
-	this->Position = Position += DynamSteer.Velocity * DeltaTime;
+	/*this->Position = Position += DynamSteer.Velocity * DeltaTime;
 	this->Orientation = DynamSteer.Orientation;
 	this->Velocity = DynamSteer.Velocity;
+	this->Velocity *= this->Drag;*/
+
+	this->Velocity = (DynamSteer.Velocity + this->Velocity)/2;
+	this->Position = Position += this->Velocity * DeltaTime;
+	this->Orientation = DynamSteer.Orientation;
 	this->Velocity *= this->Drag;
 }
+
+
+
+
