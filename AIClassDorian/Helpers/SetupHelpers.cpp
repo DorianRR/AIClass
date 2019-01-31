@@ -4,14 +4,29 @@
 
 void SetupHelpers::DynamicSeekSetup(std::vector<Kinematic> * boidsToDraw)
 {
-	Kinematic temp1;
-	temp1.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
-	Kinematic temp2;
-	temp2.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
-	Kinematic temp3;
-	temp3.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
+	Kinematic SeekBoid;
+	SeekBoid.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
+	boidsToDraw->push_back(SeekBoid);
+}
 
-	boidsToDraw->push_back(temp1);
-	boidsToDraw->push_back(temp2);
-	boidsToDraw->push_back(temp3);
+
+void SetupHelpers::WanderSetup(std::vector<Kinematic> * boidsToDraw, int NumberOfWanderers)
+{
+	for (int i = 0; i < NumberOfWanderers; i++)
+	{
+		Kinematic temp1;
+		temp1.Color = ofColor(ofRandom(0, 255), ofRandom(0, 255), ofRandom(0, 255));
+		temp1.Position = ofVec2f(std::rand() % (1042 + 1), std::rand() % 720 + 1);
+		boidsToDraw->push_back(temp1);
+	}
+
+}
+
+void SetupHelpers::InitializeCrumbs(std::vector<Crumb> * crumbs, int numberOfCrumbs)
+{
+	for (int i = 0; i < numberOfCrumbs; i++)
+	{
+		Crumb temp1;
+		crumbs->push_back(temp1);
+	}
 }

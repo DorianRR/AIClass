@@ -180,9 +180,10 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataStructs\Crumb.cpp" />
     <ClCompile Include="DataStructs\Kinematic.cpp" />
     <ClCompile Include="Helpers\ofAppHelpers.cpp" />
-    <ClCompile Include="SetupHelpers.cpp" />
+    <ClCompile Include="Helpers\SetupHelpers.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
@@ -195,12 +196,18 @@
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="Steering\Flee.cpp" />
+    <ClCompile Include="Steering\Matching.cpp" />
+    <ClCompile Include="Steering\Orientation.cpp" />
+    <ClCompile Include="Steering\Pursue.cpp" />
     <ClCompile Include="Steering\Seek.cpp" />
+    <ClCompile Include="Steering\Wander.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataStructs\Crumb.h" />
     <ClInclude Include="DataStructs\Kinematic.h" />
     <ClInclude Include="Helpers\ofAppHelpers.h" />
-    <ClInclude Include="SetupHelpers.h" />
+    <ClInclude Include="Helpers\SetupHelpers.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxButton.h" />
@@ -214,8 +221,13 @@
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxToggle.h" />
     <ClInclude Include="Steering\DynamicSteering.h" />
+    <ClInclude Include="Steering\Flee.h" />
     <ClInclude Include="Steering\KinematicSteering.h" />
+    <ClInclude Include="Steering\Matching.h" />
+    <ClInclude Include="Steering\Orientation.h" />
+    <ClInclude Include="Steering\Pursue.h" />
     <ClInclude Include="Steering\Seek.h" />
+    <ClInclude Include="Steering\Wander.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

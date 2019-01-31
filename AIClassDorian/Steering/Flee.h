@@ -14,12 +14,10 @@
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\ofAppHelpers.h"
 
 
-class Seek {
+class Flee {
 
 public:
-	static KinematicSteering GetKinematicSteering(Kinematic MyObject, Kinematic Target, float MaxVel, float StopRadius);
-
-	static DynamicSteering GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxAccel, float MaxSpeed, float StopRadius, float DeltaTime);
-	static DynamicSteering GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxAccel, float MaxSpeed, float SlowRadius, float StopRadius, float DeltaTime);
+	static DynamicSteering GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxAccel, float MaxSpeed, float MaxDistance, float DeltaTime);
+	
 
 };

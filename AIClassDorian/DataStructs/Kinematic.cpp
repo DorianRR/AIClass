@@ -9,6 +9,9 @@ Kinematic::Kinematic()
 	Rotation = 0;
 	Radius = 10;
 	Color = ofColor::blueViolet;
+	Drag = 1;
+	GetDrawn = true;
+	LeaveTrail = true;
 }
 
 Kinematic::Kinematic(ofVec2f position)
@@ -19,6 +22,10 @@ Kinematic::Kinematic(ofVec2f position)
 	Rotation = 0;
 	Radius = 10;
 	Color = ofColor::blueViolet;
+	Drag = 1;
+	GetDrawn = true;
+	LeaveTrail = true;
+
 }
 
 Kinematic::Kinematic(ofVec2f position, ofVec2f velocity)
@@ -29,6 +36,10 @@ Kinematic::Kinematic(ofVec2f position, ofVec2f velocity)
 	Rotation = 0;
 	Radius = 10;
 	Color = ofColor::blueViolet;
+	Drag = 1;
+	GetDrawn = true;
+	LeaveTrail = true;
+
 }
 
 
@@ -40,4 +51,17 @@ Kinematic::Kinematic(ofVec2f position, ofVec2f velocity, float orientation, floa
 	Rotation = rotation;
 	Radius = 10;
 	Color = ofColor::blueViolet;
+	Drag = 1;
+	GetDrawn = true;
+	LeaveTrail = true;
+	
+
+}
+
+void Kinematic::ProcessSteering(DynamicSteering DynamSteer, float DeltaTime)
+{
+	this->Position = Position += DynamSteer.Velocity * DeltaTime;
+	this->Orientation = DynamSteer.Orientation;
+	this->Velocity = DynamSteer.Velocity;
+	this->Velocity *= this->Drag;
 }

@@ -3,7 +3,9 @@
 #include "ofVec2f.h"
 #include "ofColor.h"
 
-//using namespace std;
+//Steering types
+#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\DynamicSteering.h"
+#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\KinematicSteering.h"
 
 
 struct Kinematic
@@ -14,10 +16,13 @@ public:
 	ofVec2f Velocity;
 	float Orientation;
 	float Rotation;
+
+	float Drag;
 	float Radius;
 	ofColor Color;
 
-
+	bool GetDrawn;
+	bool LeaveTrail;
 
 	//Constructors
 	Kinematic();
@@ -25,4 +30,6 @@ public:
 	Kinematic(ofVec2f position, ofVec2f velocity);
 	Kinematic(ofVec2f position, ofVec2f velocity, float orientation, float rotation);
 
+
+	void ProcessSteering(DynamicSteering DynStr, float DeltaTime);
 };

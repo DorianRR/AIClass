@@ -3,14 +3,70 @@
 
 void ofAppHelpers::DrawBoids(std::vector<Kinematic> boidsToDraw)
 {
-		for (std::vector<Kinematic>::size_type i = 0; i != boidsToDraw.size(); i++)
+	for (std::vector<Kinematic>::size_type i = 0; i != boidsToDraw.size(); i++)
+	{
+		if (boidsToDraw[i].GetDrawn)
 		{
 			ofSetColor(boidsToDraw[i].Color);
 			ofDrawCircle(boidsToDraw[i].Position, boidsToDraw[i].Radius);
-			ofVec2f x1 = boidsToDraw[i].Position + ofVec2f(boidsToDraw[i].Velocity.y, boidsToDraw[i].Velocity.x *-1) * 10;
-			ofVec2f x2 = boidsToDraw[i].Position + ofVec2f(-boidsToDraw[i].Velocity.y, boidsToDraw[i].Velocity.x) * 10;
-			ofVec2f x3 = boidsToDraw[i].Position + boidsToDraw[i].Velocity.normalized() * 20;
+
+			ofVec2f temp = ofVec2f(cos(boidsToDraw[i].Orientation), sin(boidsToDraw[i].Orientation));
+			ofVec2f x1 = boidsToDraw[i].Position + ofVec2f(temp.y, temp.x *-1).getNormalized() * 10;
+			ofVec2f x2 = boidsToDraw[i].Position + ofVec2f(-temp.y, temp.x).getNormalized() * 10;
+			ofVec2f x3 = boidsToDraw[i].Position + temp.getNormalized() * 20;
+
 			ofDrawTriangle(x1, x2, x3);
-			ofSetColor(ofColor::floralWhite);
+			//ofSetColor(ofColor::floralWhite);
 		}
+		
+	}
+}
+
+void ofAppHelpers::LeaveCrumbs(std::vector<Kinematic> boidsToDraw, std::vector<Crumb> * crumbs)
+{
+	bool DoOnce = true;
+	for (int i = 0; i != boidsToDraw.size(); i++)
+	{
+		if (boidsToDraw[i].LeaveTrail && boidsToDraw[i].GetDrawn)
+		{
+
+			for (int j = 0; j < (*crumbs).size(); j++)
+			{
+				if (!(*crumbs)[j].InUse && DoOnce)
+				{
+
+					(*crumbs)[j].Position = boidsToDraw[i].Position;
+					(*crumbs)[j].Radius = 7.5;
+					(*crumbs)[j].InUse = true;
+					(*crumbs)[j].Color = boidsToDraw[i].Color;
+					DoOnce = false;
+				}
+			}
+			DoOnce = true;
+		}
+	}
+}
+
+void ofAppHelpers::UpdateAndDrawCrumbs(std::vector<Crumb> * crumbs, float DeltaTime)
+{
+	for (int i = 0; i != (*crumbs).size(); i++)
+	{
+		(*crumbs)[i].Update(DeltaTime);
+		if ((*crumbs)[i].InUse)
+		{
+			ofSetColor((*crumbs)[i].Color);
+			ofDrawCircle((*crumbs)[i].Position, (*crumbs)[i].Radius);
+		}
+	}
+}
+
+void ofAppHelpers::CheckForOnScreen(std::vector<Kinematic> * boidsToDraw)
+{
+	for (int i = 0; i != (*boidsToDraw).size(); i++)
+	{
+		if ((*boidsToDraw)[i].Position.x > 1024 || (*boidsToDraw)[i].Position.x < 0 || (*boidsToDraw)[i].Position.y > 768 || (*boidsToDraw)[i].Position.y < 0)
+		{
+			(*boidsToDraw)[i].GetDrawn = false;
+		}
+	}
 }

@@ -43,9 +43,6 @@
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
-    <ClCompile Include="SetupHelpers.cpp">
-      <Filter>src\Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="DataStructs\Kinematic.cpp">
       <Filter>src\DataStructs</Filter>
     </ClCompile>
@@ -54,6 +51,27 @@
     </ClCompile>
     <ClCompile Include="Steering\Seek.cpp">
       <Filter>src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\Orientation.cpp">
+      <Filter>src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\Wander.cpp">
+      <Filter>src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers\SetupHelpers.cpp">
+      <Filter>src\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\Flee.cpp">
+      <Filter>src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\Pursue.cpp">
+      <Filter>src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\Matching.cpp">
+      <Filter>src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructs\Crumb.cpp">
+      <Filter>src\DataStructs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,9 +137,6 @@
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
-    <ClInclude Include="SetupHelpers.h">
-      <Filter>src\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="DataStructs\Kinematic.h">
       <Filter>src\DataStructs</Filter>
     </ClInclude>
@@ -136,6 +151,27 @@
     </ClInclude>
     <ClInclude Include="Steering\Seek.h">
       <Filter>src\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\Orientation.h">
+      <Filter>src\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\Wander.h">
+      <Filter>src\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers\SetupHelpers.h">
+      <Filter>src\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\Flee.h">
+      <Filter>src\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\Pursue.h">
+      <Filter>src\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\Matching.h">
+      <Filter>src\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructs\Crumb.h">
+      <Filter>src\DataStructs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
