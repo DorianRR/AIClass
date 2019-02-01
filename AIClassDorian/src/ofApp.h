@@ -85,6 +85,7 @@ public:
 
 private:
 	float timer;
+	float timer2;
 	Configuration Mode;
 	
 };

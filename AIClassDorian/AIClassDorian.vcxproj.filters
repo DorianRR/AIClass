@@ -143,12 +143,6 @@
     <ClInclude Include="Helpers\ofAppHelpers.h">
       <Filter>src\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Steering\DynamicSteering.h">
-      <Filter>src\Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="Steering\KinematicSteering.h">
-      <Filter>src\Steering</Filter>
-    </ClInclude>
     <ClInclude Include="Steering\Seek.h">
       <Filter>src\Steering</Filter>
     </ClInclude>
@@ -171,6 +165,12 @@
       <Filter>src\Steering</Filter>
     </ClInclude>
     <ClInclude Include="DataStructs\Crumb.h">
+      <Filter>src\DataStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\DynamicSteering.h">
+      <Filter>src\DataStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\KinematicSteering.h">
       <Filter>src\DataStructs</Filter>
     </ClInclude>
   </ItemGroup>

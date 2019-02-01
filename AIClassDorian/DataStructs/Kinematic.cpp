@@ -9,7 +9,7 @@ Kinematic::Kinematic()
 	Rotation = 0;
 	Radius = 10;
 	Color = ofColor::blueViolet;
-	Drag = 1;
+	Drag = 0.95;
 	GetDrawn = true;
 	LeaveTrail = true;
 }
@@ -22,7 +22,7 @@ Kinematic::Kinematic(ofVec2f position)
 	Rotation = 0;
 	Radius = 10;
 	Color = ofColor::blueViolet;
-	Drag = 1;
+	Drag = 0.95;
 	GetDrawn = true;
 	LeaveTrail = true;
 
@@ -36,7 +36,7 @@ Kinematic::Kinematic(ofVec2f position, ofVec2f velocity)
 	Rotation = 0;
 	Radius = 10;
 	Color = ofColor::blueViolet;
-	Drag = 1;
+	Drag = 0.95;
 	GetDrawn = true;
 	LeaveTrail = true;
 
@@ -51,7 +51,7 @@ Kinematic::Kinematic(ofVec2f position, ofVec2f velocity, float orientation, floa
 	Rotation = rotation;
 	Radius = 10;
 	Color = ofColor::blueViolet;
-	Drag = 1;
+	Drag = 0.95;
 	GetDrawn = true;
 	LeaveTrail = true;
 	
@@ -60,7 +60,7 @@ Kinematic::Kinematic(ofVec2f position, ofVec2f velocity, float orientation, floa
 
 void Kinematic::ProcessSteering(DynamicSteering DynamSteer, float MaxSpeed, float DeltaTime)
 {
-	this->Velocity *= .95;
+	this->Velocity *= this->Drag;
 	this->Velocity = ((DynamSteer.Velocity* DeltaTime)/3 + this->Velocity);
 	if (this->Velocity.length() > MaxSpeed)
 	{
@@ -71,6 +71,18 @@ void Kinematic::ProcessSteering(DynamicSteering DynamSteer, float MaxSpeed, floa
 	this->Velocity *= this->Drag;
 }
 
+void Kinematic::ProcessSteering(DynamicSteering DynamSteer, float MaxSpeed, bool isWander, float DeltaTime)
+{
+	this->Velocity *= this->Drag;
+	this->Velocity = ((DynamSteer.Velocity* DeltaTime) / 3 + this->Velocity);
+	if (this->Velocity.length() > MaxSpeed)
+	{
+		this->Velocity = this->Velocity.normalized() * MaxSpeed;
+	}
+	this->Position = Position += this->Velocity * DeltaTime;
+	this->Orientation = DynamSteer.Orientation;
+	this->Velocity *= this->Drag;
+}
 
 
 

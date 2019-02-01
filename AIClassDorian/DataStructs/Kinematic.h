@@ -32,5 +32,6 @@ public:
 
 
 	void ProcessSteering(DynamicSteering DynStr, float MaxSpeed, float DeltaTime);
-	
+	void ProcessSteering(DynamicSteering DynamSteer, float MaxSpeed, bool isWander, float DeltaTime);
+
 };

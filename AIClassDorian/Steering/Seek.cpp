@@ -3,28 +3,6 @@
 
 KinematicSteering Seek::GetKinematicSteering(Kinematic MyObject, Kinematic Target, float MaxVel, float StopRadius)
 {
-
-	/*
-	DynamicSteering DynStr = DynamicSteering();
-	float DistanceBtwKin = Target.Position.distance(MyObject.Position);
-	if (DistanceBtwKin <= StopRadius)
-	{
-		return DynStr;
-	}
-	else
-	{
-		ofVec2f Direction = (Target.Position - MyObject.Position).getNormalized();
-		Direction *= MaxAccel;
-		if (Direction.length() > MaxSpeed)
-		{
-			Direction /= (Direction.length() / MaxSpeed);
-		}
-		DynStr.Acceleration = Direction;
-		DynStr.AngularAcceleration = Seek::GetDynamicAngularAccel(MyObject, Target, MaxAccel);
-
-	}
-	return DynStr;
-	*/
 	cout << "Get Seek Kinematic Steering not implemented.";
 	assert(false);
 	return KinematicSteering();
