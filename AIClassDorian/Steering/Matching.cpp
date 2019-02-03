@@ -1,18 +1,15 @@
 #include "Matching.h"
 
-DynamicSteering Matching::MatchVelocity(Kinematic MyObject, Kinematic Target, float MaxAccel, float MatchThreshold, float DeltaTime)
+DynamicSteering Matching::MatchVelocity(Kinematic MyObject, Kinematic Target, float MatchThreshold)
 {
 	DynamicSteering DynSteer;
-	if (abs(atan((MyObject.Velocity.y - Target.Velocity.y)/(MyObject.Velocity.x/Target.Velocity.x))) < MatchThreshold)
+	float OrientationDelta = abs(Orientation::GetAllignAngle(Target.Velocity) - MyObject.Orientation);
+	if (OrientationDelta < MatchThreshold)
 	{
+		DynSteer.DistanceScale = 0;
 		return DynSteer;
 	}
-	DynSteer.LinearAcceleration = (Target.Velocity - MyObject.Velocity).getNormalized() * MaxAccel * DeltaTime;
-
+	DynSteer.DistanceScale = OrientationDelta / MatchThreshold;
+	DynSteer.LinearAcceleration = (Target.Velocity - MyObject.Velocity).getNormalized();
 	return DynSteer;
-}
-
-DynamicSteering Matching::MatchOrientation(Kinematic MyObject, Kinematic Target, float MaxAccel, float MatchThreshold, float DeltaTime)
-{
-	return DynamicSteering();
 }

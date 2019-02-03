@@ -18,7 +18,6 @@ class Matching
 {
 public:
 
-	static DynamicSteering MatchVelocity(Kinematic MyObject, Kinematic Target, float MaxAccel, float MatchThreshold, float DeltaTime);
-	static DynamicSteering MatchOrientation(Kinematic MyObject, Kinematic Target, float MaxAccel, float MatchThreshold, float DeltaTime);
+	static DynamicSteering MatchVelocity(Kinematic MyObject, Kinematic Target, float MatchThreshold);
 
 };

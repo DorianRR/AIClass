@@ -1,7 +1,7 @@
 #include "Flee.h"
 
 
-DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxDistance, float DeltaTime)
+DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxDistance)
 {
 	DynamicSteering DynStr = DynamicSteering();
 	float DistanceBtwKin = Target.Position.distance(MyObject.Position);
@@ -20,7 +20,7 @@ DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, Kinematic Target, f
 	return DynStr;
 }
 
-DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, std::vector<Kinematic> Targets, float MaxDistance, float DeltaTime)
+DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, std::vector<Kinematic> Targets, float MaxDistance)
 {
 	DynamicSteering DynStr = DynamicSteering();
 	ofVec2f Direction;

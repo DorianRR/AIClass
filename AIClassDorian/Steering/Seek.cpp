@@ -9,7 +9,7 @@ KinematicSteering Seek::GetKinematicSteering(Kinematic MyObject, Kinematic Targe
 }
 
 
-DynamicSteering Seek::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float StopRadius, float DeltaTime)
+DynamicSteering Seek::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float StopRadius)
 {
 	DynamicSteering DynStr = DynamicSteering();
 	float DistanceBtwKin = Target.Position.distance(MyObject.Position);
@@ -27,7 +27,7 @@ DynamicSteering Seek::GetDynamicSteering(Kinematic MyObject, Kinematic Target, f
 }
 
 
-DynamicSteering Seek::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float SlowRadius, float StopRadius, float DeltaTime)
+DynamicSteering Seek::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float SlowRadius, float StopRadius)
 {
 	DynamicSteering DynStr = DynamicSteering();
 	float DistanceBtwKin = Target.Position.distance(MyObject.Position);

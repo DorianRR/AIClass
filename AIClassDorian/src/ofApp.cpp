@@ -67,8 +67,8 @@ void ofApp::update()
 
 	case DynamicSeekMode1:
 		SeekTarget.Position = ofVec2f(ofApp::mouseX, ofApp::mouseY);
-		//MobileBoids[0].ProcessSteering(Seek::GetDynamicSteering(MobileBoids[0], SeekTarget, 100, 10, FrameTime), MaxAccel, MaxSpeed, FrameTime);
-		MobileBoids[0].ProcessSteering(Flee::GetDynamicSteering(MobileBoids[0], SeekTarget, 100, FrameTime), MaxAccel, MaxSpeed, FrameTime);
+		MobileBoids[0].ProcessSteering(Seek::GetDynamicSteering(MobileBoids[0], SeekTarget, 100, 10), MaxAccel, MaxSpeed, FrameTime);
+
 		break;
 
 
@@ -76,18 +76,40 @@ void ofApp::update()
 		for (int i = 0; i != MobileBoids.size(); i++)
 		{
 			ofAppHelpers::CheckForOnScreen(&MobileBoids);
-			MobileBoids[i].ProcessSteering(Wander::GetDynamicSteering(MobileBoids[i], .65, FrameTime), MaxAccel, MaxSpeed, FrameTime);
+			MobileBoids[i].ProcessSteering(Wander::GetDynamicSteering(MobileBoids[i], .65), MaxAccel, MaxSpeed, FrameTime);
 		}
 		break;
 
-
-	case FlockMode:
 		
+	case FlockMode:
+		SeekTarget.Position = ofVec2f(ofApp::mouseX, ofApp::mouseY);
+		FlockLeader.ProcessSteering(Seek::GetDynamicSteering(FlockLeader, SeekTarget, 100, 5), MaxAccel, MaxSpeed, FrameTime);
+		//FlockLeader.ProcessSteering(Wander::GetDynamicSteering(FlockLeader, .5, 25, temp), MaxSpeed, temp);
+		DynamicSteering Avoid;
+
+		for (int i = 0; i != MobileBoids.size(); i++)
+		{
+			if (timer > ofRandom(0.07, 0.13))
+			{
+				if (ofRandom(0, 1) > 0.75) {}
+				else
+				{
+					Avoid = Flee::GetDynamicSteering(MobileBoids[i], MobileBoids, 150);
+
+				}
+			}
+			DynamicSteering Final;
+			ofAppHelpers::CheckForOnScreen(&MobileBoids);
+			DynamicSteering VelocityMatch = Matching::MatchVelocity(MobileBoids[i], FlockLeader, .15);
+			DynamicSteering SeekLeader = Seek::GetDynamicSteering(MobileBoids[i], FlockLeader, 100, 5);
+
+			Final.LinearAcceleration = (Avoid.LinearAcceleration*3 + VelocityMatch.LinearAcceleration/1.5 + SeekLeader.LinearAcceleration).getNormalized();
+			Final.TargetOrientation = Orientation::GetAllignAngle(Final.LinearAcceleration);
+
+			MobileBoids[i].ProcessSteering(Final, MaxAccel, MaxSpeed, FrameTime);
+		}
 		break;
 
-
-	default:
-		break;
 	}
 }
 
