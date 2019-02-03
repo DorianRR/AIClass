@@ -1,32 +1,26 @@
 #include "Flee.h"
 
 
-DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxAccel, float MaxSpeed, float MaxDistance, float DeltaTime)
+DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, Kinematic Target, float MaxDistance, float DeltaTime)
 {
 	DynamicSteering DynStr = DynamicSteering();
 	float DistanceBtwKin = Target.Position.distance(MyObject.Position);
 	if (DistanceBtwKin >= MaxDistance || DistanceBtwKin < 1)
 	{
+		DynStr.DistanceScale = 0;
 		return DynStr;
 	}
 	else
 	{
 		ofVec2f Direction = (Target.Position - MyObject.Position).getNormalized() * (MaxDistance/3) / (Target.Position - MyObject.Position).length();
-		Direction *= MaxAccel;
-		//Direction += MyObject.Velocity / 3.5;
-		if (Direction.length() > MaxSpeed)
-		{
-			Direction /= (Direction.length() / MaxSpeed);
-		}
-		DynStr.Velocity = Direction;
-		DynStr.Orientation = -Orientation::GetDynamicFace(MyObject, Target, MaxAccel, DeltaTime);
-
+		DynStr.DistanceScale = MaxDistance/DistanceBtwKin;
+		DynStr.LinearAcceleration = -Direction.getNormalized();
+		DynStr.TargetOrientation = -Orientation::GetDynamicFace(MyObject, Target);
 	}
 	return DynStr;
-
 }
 
-DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, std::vector<Kinematic> Targets, float MaxAccel, float MaxSpeed, float MaxDistance, float DeltaTime)
+DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, std::vector<Kinematic> Targets, float MaxDistance, float DeltaTime)
 {
 	DynamicSteering DynStr = DynamicSteering();
 	ofVec2f Direction;
@@ -43,13 +37,8 @@ DynamicSteering Flee::GetDynamicSteering(Kinematic MyObject, std::vector<Kinemat
 
 		}
 	}
-	Direction *= MaxAccel;
-	if (Direction.length() > MaxSpeed)
-	{
-		Direction /= (Direction.length() / MaxSpeed);
-	}
-	DynStr.Velocity = -Direction;
-	DynStr.Orientation = Orientation::GetAllignAngle(DynStr.Velocity);
+	DynStr.LinearAcceleration = -Direction.getNormalized();
+	DynStr.TargetOrientation = Orientation::GetAllignAngle(DynStr.LinearAcceleration);
 	return DynStr;
 
 }

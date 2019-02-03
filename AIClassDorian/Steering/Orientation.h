@@ -1,8 +1,6 @@
 #pragma once
 #include <iostream>
 
-#include "ofMath.h"
-
 //Steering Classes
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\DynamicSteering.h"
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\KinematicSteering.h"
@@ -13,6 +11,7 @@
 //Helpers
 #include "ofVec2f.h"
 #include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\ofAppHelpers.h"
+#include "ofMath.h"
 
 
 class Orientation
@@ -21,6 +20,6 @@ class Orientation
 public:
 	static float GetAllignAngle(ofVec2f VecToAllignTo);
 
-	static float GetDynamicFace(Kinematic MyObject, Kinematic Target, float MaxAccel, float DeltaTime);
+	static float GetDynamicFace(Kinematic MyObject, Kinematic Target);
 
 };

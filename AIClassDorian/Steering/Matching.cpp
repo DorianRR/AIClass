@@ -7,7 +7,7 @@ DynamicSteering Matching::MatchVelocity(Kinematic MyObject, Kinematic Target, fl
 	{
 		return DynSteer;
 	}
-	DynSteer.Velocity = (Target.Velocity - MyObject.Velocity).getNormalized() * MaxAccel * DeltaTime;
+	DynSteer.LinearAcceleration = (Target.Velocity - MyObject.Velocity).getNormalized() * MaxAccel * DeltaTime;
 
 	return DynSteer;
 }

@@ -31,9 +31,11 @@ public:
 
 	enum Configuration
 	{
-		DefaultMode, DynamicSeekMode1, DynamicSeekMode2, WanderMode1, WanderMode2, FlockMode, default
+		DefaultMode, DynamicSeekMode1, WanderMode1, FlockMode, default
 	};
 	float MaxSpeed;
+	float MaxAccel;
+
 
 	std::vector<Kinematic> MobileBoids;
 	std::vector<Kinematic> StationaryKinematics;
@@ -57,13 +59,10 @@ public:
 	void windowResized(int w, int h);
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
+	void ClearMode();
 
-
-	void RunKinematic();
 	void RunDynamicSeek1();
-	void RunDynamicSeek2();
 	void RunWander1();
-	void RunWander2();
 	
 
 	void RunFlock();
@@ -73,20 +72,16 @@ public:
 	ofxPanel GUI;
 
 	ofxButton Clear;
-	ofxButton KinematicMove;
 	ofxButton DynamicSeek1;
-	ofxButton DynamicSeek2;
 	ofxButton WanderButton1;
-	ofxButton WanderButton2;
 	ofxButton FlockButton;
 
 	ofxFloatSlider SpeedSlider;
+	ofxFloatSlider AccelSlider;
 
 
 private:
 	float timer;
-	float timer2;
 	Configuration Mode;
-	
 };
 

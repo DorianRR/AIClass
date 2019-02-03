@@ -18,7 +18,5 @@ class Wander
 
 public:
 
-	static DynamicSteering GetDynamicSteering(Kinematic MyObject, float WanderVariance, float WanderSpeed, float DeltaTime);
-
-
+	static DynamicSteering GetDynamicSteering(Kinematic MyObject, float WanderVariance, float DeltaTime);
 };

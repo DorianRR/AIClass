@@ -4,6 +4,7 @@
 struct DynamicSteering
 {
 public:
-	ofVec2f Velocity = ofVec2f::zero();
-	float Orientation = 0.0f;
+	ofVec2f LinearAcceleration = ofVec2f::zero();
+	float TargetOrientation = 0.0f;
+	float DistanceScale = 1;
 };
