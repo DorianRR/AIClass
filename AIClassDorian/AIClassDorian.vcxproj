@@ -184,6 +184,7 @@
     <ClCompile Include="DataStructs\Kinematic.cpp" />
     <ClCompile Include="Helpers\ofAppHelpers.cpp" />
     <ClCompile Include="Helpers\SetupHelpers.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="DataStructs\Kinematic.h" />
     <ClInclude Include="Helpers\ofAppHelpers.h" />
     <ClInclude Include="Helpers\SetupHelpers.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxButton.h" />

@@ -73,6 +73,9 @@
     <ClCompile Include="DataStructs\Crumb.cpp">
       <Filter>src\DataStructs</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Steering\KinematicSteering.h">
       <Filter>src\DataStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
