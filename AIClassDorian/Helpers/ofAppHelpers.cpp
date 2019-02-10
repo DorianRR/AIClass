@@ -1,6 +1,9 @@
 #include "ofAppHelpers.h"
 
 
+
+//Drawing Boids
+//========================================================================================================
 void ofAppHelpers::DrawBoids(std::vector<Kinematic> boidsToDraw)
 {
 	for (std::vector<Kinematic>::size_type i = 0; i != boidsToDraw.size(); i++)
@@ -19,7 +22,6 @@ void ofAppHelpers::DrawBoids(std::vector<Kinematic> boidsToDraw)
 		}
 	}
 }
-
 
 void ofAppHelpers::DrawBoid(Kinematic boidToDraw)
 {
@@ -46,7 +48,7 @@ void ofAppHelpers::LeaveCrumbs(std::vector<Kinematic> boidsToDraw, std::vector<C
 		if (boidsToDraw[i].LeaveTrail && boidsToDraw[i].GetDrawn)
 		{
 
-			for (int j = 0; j < (*crumbs).size(); j++)
+			for (unsigned int j = 0; j < (*crumbs).size(); j++)
 			{
 				if (!(*crumbs)[j].InUse && DoOnce)
 				{
@@ -85,4 +87,17 @@ void ofAppHelpers::CheckForOnScreen(std::vector<Kinematic> * boidsToDraw)
 			(*boidsToDraw)[i].GetDrawn = false;
 		}
 	}
+}
+//=========================================================================================================
+
+//Draw Graph
+//=========================================================================================================
+void ofAppHelpers::DrawGraph(DirectedWeightedGraph Graph)
+{
+	for (int i = 0; i != (Graph.Edges.size()); i++)
+	{
+		ofDrawLine(Graph.Edges[i].StartPosition, Graph.Edges[i].EndPosition);
+	}
+
+
 }

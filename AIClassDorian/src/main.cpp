@@ -1,6 +1,6 @@
 #include "ofMain.h"
-#include "ofApp.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Menu.h"
+#include "AssignmentApps\ofApp.h"
+#include "AssignmentApps\Assignment2ofApp.h"
 
 
 //========================================================================
@@ -13,7 +13,12 @@ int main( ){
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN
 	// pass in width and height too:
-	ofRunApp(new Menu());
 	
+	//Assignment 1
+	//ofRunApp(new ofApp());
+	
+	//Assignment 2
+	ofRunApp(new Assignment2ofApp());
+
 }
 

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\ofApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -73,8 +70,14 @@
     <ClCompile Include="DataStructs\Crumb.cpp">
       <Filter>src\DataStructs</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="AssignmentApps\ofApp.cpp">
+      <Filter>src\AssignmentApps\Assignment1</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentApps\Assignment2ofApp.cpp">
+      <Filter>src\AssignmentApps\Assignment2</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructs\Graph\GraphStructs.cpp">
+      <Filter>src\DataStructs\Graph</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,11 +102,20 @@
     <Filter Include="src\Steering">
       <UniqueIdentifier>{7138519f-b816-4aa4-b9b3-e54efc340e8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\AssignmentApps">
+      <UniqueIdentifier>{cf9d540d-93f0-46d8-8b4e-5ec8a3a1cced}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\AssignmentApps\Assignment1">
+      <UniqueIdentifier>{091b68f8-44cb-4d63-8acf-7ff76e0791c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\AssignmentApps\Assignment2">
+      <UniqueIdentifier>{92a91fec-060f-4020-a255-39b4caa9efdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DataStructs\Graph">
+      <UniqueIdentifier>{f142ce5f-b77d-40fd-867e-ad8de881cbcf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -170,14 +182,20 @@
     <ClInclude Include="DataStructs\Crumb.h">
       <Filter>src\DataStructs</Filter>
     </ClInclude>
-    <ClInclude Include="Steering\DynamicSteering.h">
-      <Filter>src\DataStructs</Filter>
+    <ClInclude Include="AssignmentApps\ofApp.h">
+      <Filter>src\AssignmentApps\Assignment1</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentApps\Assignment2ofApp.h">
+      <Filter>src\AssignmentApps\Assignment2</Filter>
     </ClInclude>
     <ClInclude Include="Steering\KinematicSteering.h">
-      <Filter>src\DataStructs</Filter>
+      <Filter>src\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>src</Filter>
+    <ClInclude Include="Steering\DynamicSteering.h">
+      <Filter>src\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructs\Graph\GraphStructs.h">
+      <Filter>src\DataStructs\Graph</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

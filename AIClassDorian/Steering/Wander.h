@@ -1,16 +1,16 @@
 #pragma once
 
 //Steering Classes
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\DynamicSteering.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Orientation.h"
+#include "Steering\DynamicSteering.h"
+#include "Steering\Orientation.h"
 
 //Data structures
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\DataStructs\Kinematic.h"
+#include "DataStructs\Kinematic.h"
 
 //Helpers
 #include "ofMath.h"
 #include "ofVec2f.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\ofAppHelpers.h"
+#include "Helpers\ofAppHelpers.h"
 
 
 class Wander

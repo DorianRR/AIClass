@@ -100,7 +100,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\..\addons\ofxGui\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\..\addons\ofxGui\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
@@ -180,13 +180,14 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AssignmentApps\Assignment2ofApp.cpp" />
+    <ClCompile Include="AssignmentApps\ofApp.cpp" />
     <ClCompile Include="DataStructs\Crumb.cpp" />
+    <ClCompile Include="DataStructs\Graph\GraphStructs.cpp" />
     <ClCompile Include="DataStructs\Kinematic.cpp" />
     <ClCompile Include="Helpers\ofAppHelpers.cpp" />
     <ClCompile Include="Helpers\SetupHelpers.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxButton.cpp" />
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxColorPicker.cpp" />
@@ -205,12 +206,13 @@
     <ClCompile Include="Steering\Wander.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssignmentApps\Assignment2ofApp.h" />
+    <ClInclude Include="AssignmentApps\ofApp.h" />
     <ClInclude Include="DataStructs\Crumb.h" />
+    <ClInclude Include="DataStructs\Graph\GraphStructs.h" />
     <ClInclude Include="DataStructs\Kinematic.h" />
     <ClInclude Include="Helpers\ofAppHelpers.h" />
     <ClInclude Include="Helpers\SetupHelpers.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxButton.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxColorPicker.h" />

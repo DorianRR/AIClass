@@ -6,26 +6,26 @@
 #include "ofxGui.h"
 
 //Kinematic
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\DataStructs\Kinematic.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\DataStructs\Crumb.h"
+#include "DataStructs\Kinematic.h"
+#include "DataStructs\Crumb.h"
 
 
 //Helpers
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\ofAppHelpers.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Helpers\SetupHelpers.h"
+#include "Helpers\ofAppHelpers.h"
+#include "Helpers\SetupHelpers.h"
 #include "ofVec2f.h"
 
 //Modes
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Seek.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Wander.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Flee.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\Matching.h"
+#include "Steering\Seek.h"
+#include "Steering\Wander.h"
+#include "Steering\Flee.h"
+#include "Steering\Matching.h"
 
 
 
 
 
-class Menu : public ofBaseApp {
+class ofApp : public ofBaseApp {
 
 public:
 
@@ -63,7 +63,7 @@ public:
 
 	void RunDynamicSeek1();
 	void RunWander1();
-
+	
 
 	void RunFlock();
 

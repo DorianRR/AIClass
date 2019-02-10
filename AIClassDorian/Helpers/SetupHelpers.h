@@ -1,6 +1,6 @@
 #pragma once
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\DataStructs\Kinematic.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\DataStructs\Crumb.h"
+#include "DataStructs\Kinematic.h"
+#include "DataStructs\Crumb.h"
 
 #include <vector>
 #include "ofMath.h"

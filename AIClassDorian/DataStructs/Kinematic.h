@@ -5,8 +5,8 @@
 #include "ofColor.h"
 
 //Steering types
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\DynamicSteering.h"
-#include "..\apps\myApps\AiClassDorian\AIClass\AIClassDorian\Steering\KinematicSteering.h"
+#include "Steering\DynamicSteering.h"
+#include "Steering\KinematicSteering.h"
 
 
 struct Kinematic
