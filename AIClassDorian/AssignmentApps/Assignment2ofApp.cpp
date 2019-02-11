@@ -6,7 +6,6 @@
 void Assignment2ofApp::setup() 
 {
 	Mode = MenuMode;
-	SEAMapImage.load("Data\SEAMap.jpg");
 
 
 	SEAMap.addListener(this, &Assignment2ofApp::SetupSEAsianMap);
@@ -20,6 +19,7 @@ void Assignment2ofApp::setup()
 
 void Assignment2ofApp::SetupSEAsianMap()
 {
+	SEAMapImage.load("SEAMap.jpg");
 
 }
 
@@ -29,7 +29,13 @@ void Assignment2ofApp::update(){}
 //--------------------------------------------------------------
 void Assignment2ofApp::draw() 
 {
-	ofAppHelpers::DrawGraph(Graph);
+	SEAMapImage.draw(0,0);
+	if (Graph.Edges.size() > 0)
+	{
+		ofAppHelpers::DrawGraph(Graph);
+	}
+	GUI.draw();
+
 }
 
 //--------------------------------------------------------------
