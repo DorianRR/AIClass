@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <map>
 #include "ofVec2f.h"
 #include "ofColor.h"
 
@@ -7,6 +8,17 @@
 struct Node
 {
 public:
+	Node() { ID = 0; };
+
+	Node(int InitID) { ID = InitID; };
+
+	Node(int InitID, ofVec2f InitPostion)
+	{
+		ID = InitID;
+		Position = InitPostion;
+	}
+
+
 	int GetID();
 
 
@@ -17,7 +29,7 @@ public:
 	//Visual information, for drawing and debugging
 #ifdef _DEBUG
 	ofVec2f Position;
-	float Radius;
+	float Radius = 6;
 	ofColor Color;
 #endif
 };
@@ -26,11 +38,23 @@ public:
 struct DirectedWeightedEdge
 {
 public:
-	float GetCost();
-	Node GetSource();
-	Node GetSink();
+	DirectedWeightedEdge(Node InitSource, Node InitSink, float InitCost)
+	{
+		Source = InitSource;
+		Sink = InitSink;
+		Cost = InitCost;
+#ifdef _DEBUG 
+		StartPosition = InitSource.Position;
+		EndPosition = InitSink.Position;
+		Color = ofColor::black;
+#endif
+	}
 
-private:
+	float GetCost();
+	Node GetNodeSource();
+	Node GetNodeSink();
+
+private:	
 	Node Source;
 	Node Sink;
 	float Cost;
@@ -55,9 +79,42 @@ class DirectedWeightedGraph
 {
 public:
 
-	std::vector<DirectedWeightedEdge> Edges;
 
+	DirectedWeightedGraph(int NumberOfEdges)
+	{
+		Edges.reserve(NumberOfEdges);
+	}
+	
+	void Clear()
+	{
+		Edges.clear();
+		Edges.shrink_to_fit();
+		GraphMap.clear();
+	}
+
+
+	std::vector<DirectedWeightedEdge> Edges;
+	std::map<int, std::vector<DirectedWeightedEdge>> GraphMap;
 
 };
 
 
+inline float DirectedWeightedEdge::GetCost()
+{
+	return Cost;
+}
+
+inline Node DirectedWeightedEdge::GetNodeSource()
+{
+	return Source;
+}
+
+inline Node DirectedWeightedEdge::GetNodeSink()
+{
+	return Sink;
+}
+
+inline int Node::GetID()
+{
+	return ID;
+}

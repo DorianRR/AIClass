@@ -1,7 +1,7 @@
 #include "ofAppHelpers.h"
 
 
-
+//========================================================================================================
 //Drawing Boids
 //========================================================================================================
 void ofAppHelpers::DrawBoids(std::vector<Kinematic> boidsToDraw)
@@ -88,16 +88,21 @@ void ofAppHelpers::CheckForOnScreen(std::vector<Kinematic> * boidsToDraw)
 		}
 	}
 }
-//=========================================================================================================
 
+//=========================================================================================================
 //Draw Graph
 //=========================================================================================================
 void ofAppHelpers::DrawGraph(DirectedWeightedGraph Graph)
 {
+	ofSetColor(ofColor::black);
+	ofSetLineWidth(2);
 	for (int i = 0; i != (Graph.Edges.size()); i++)
 	{
+
+		//unresolved external
+		ofDrawCircle(Graph.Edges[i].GetNodeSource().Position, Graph.Edges[i].GetNodeSource().Radius);
 		ofDrawLine(Graph.Edges[i].StartPosition, Graph.Edges[i].EndPosition);
 	}
 
-
+	ofSetColor(ofColor::white);
 }

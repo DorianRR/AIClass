@@ -19,6 +19,7 @@ float Orientation::GetDynamicFace(Kinematic MyObject, Kinematic Target)
 		//float FinalAddedRot = UnsignedOrientationDelta * DeltaTime * (SignedOrientationDelta / UnsignedOrientationDelta);
 		//return(OrientationCopy + FinalAddedRot);
 	}
+	return 0;
 }
 
 float Orientation::GetAllignAngle(ofVec2f VecToAllignTo)

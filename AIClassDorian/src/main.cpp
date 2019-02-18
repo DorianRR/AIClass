@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ofMain.h"
 #include "AssignmentApps\ofApp.h"
 #include "AssignmentApps\Assignment2ofApp.h"

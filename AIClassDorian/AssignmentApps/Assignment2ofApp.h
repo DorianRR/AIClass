@@ -19,7 +19,6 @@
 
 
 class Assignment2ofApp : public ofBaseApp {
-
 public:
 
 	enum Mode
@@ -28,7 +27,7 @@ public:
 	};
 
 	Mode Mode;
-	DirectedWeightedGraph Graph;
+	DirectedWeightedGraph Graph = DirectedWeightedGraph(0);
 
 	ofImage SEAMapImage;
 
@@ -58,8 +57,8 @@ public:
 
 	ofxButton Clear;
 	ofxButton SEAMap;
-	ofxButton WanderButton1;
-	ofxButton FlockButton;
+	ofxButton HeavyMapTest;
+	//ofxButton FlockButton;
 
 	
 
