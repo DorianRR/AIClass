@@ -6,7 +6,7 @@
 #include "DataStructs\Crumb.h"
 
 //Graphs
-#include "DataStructs\Graph\GraphStructs.h"
+//#include "DataStructs\Graph\GraphStructs.h"
 
 #include "ofMain.h"
 
@@ -23,7 +23,5 @@ public:
 	static void CheckForOnScreen(std::vector<Kinematic> * boidsToDraw);
 
 
-	//Graph
-	static void DrawGraph(DirectedWeightedGraph Graph);
 
 };

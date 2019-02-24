@@ -185,6 +185,7 @@
     <ClCompile Include="DataStructs\Crumb.cpp" />
     <ClCompile Include="DataStructs\Graph\GraphStructs.cpp" />
     <ClCompile Include="DataStructs\Kinematic.cpp" />
+    <ClCompile Include="Helpers\Assignment2Helpers.cpp" />
     <ClCompile Include="Helpers\ofAppHelpers.cpp" />
     <ClCompile Include="Helpers\SetupHelpers.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="DataStructs\Crumb.h" />
     <ClInclude Include="DataStructs\Graph\GraphStructs.h" />
     <ClInclude Include="DataStructs\Kinematic.h" />
+    <ClInclude Include="Helpers\Assignment2Helpers.h" />
     <ClInclude Include="Helpers\ofAppHelpers.h" />
     <ClInclude Include="Helpers\SetupHelpers.h" />
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />

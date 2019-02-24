@@ -18,6 +18,12 @@ public:
 		Position = InitPostion;
 	}
 
+	Node(int InitID, ofVec2f InitPostion, int SetRadius)
+	{
+		ID = InitID;
+		Position = InitPostion;
+		Radius = SetRadius;
+	}
 
 	int GetID();
 
@@ -34,10 +40,25 @@ public:
 #endif
 };
 
-
+/*
+* Negative weights mean they're an invalid edge 
+*/
 struct DirectedWeightedEdge
 {
 public:
+
+	DirectedWeightedEdge()
+	{
+		Source = Node(-1);
+		Sink = Node(-1);
+		Cost = 0;
+#ifdef _DEBUG 
+		StartPosition = ofVec2f::zero();
+		EndPosition = ofVec2f::zero();
+		Color = ofColor::black;
+#endif
+	}
+
 	DirectedWeightedEdge(Node InitSource, Node InitSink, float InitCost)
 	{
 		Source = InitSource;
@@ -92,7 +113,7 @@ public:
 		GraphMap.clear();
 	}
 
-
+	std::vector<Node> Nodes;
 	std::vector<DirectedWeightedEdge> Edges;
 	std::map<int, std::vector<DirectedWeightedEdge>> GraphMap;
 

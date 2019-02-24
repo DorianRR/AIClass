@@ -7,6 +7,7 @@
 
 //Helpers
 #include "Helpers\ofAppHelpers.h"
+#include "Helpers\Assignment2Helpers.h"
 #include "Helpers\SetupHelpers.h"
 #include "ofVec2f.h"
 
@@ -26,13 +27,17 @@ public:
 		MenuMode, SEAMapMode, StressTestMode
 	};
 
-	Mode Mode;
-	DirectedWeightedGraph Graph = DirectedWeightedGraph(0);
+	Mode AppMode;
+	DirectedWeightedGraph * pAppGraph = new DirectedWeightedGraph(0);
 
 	ofImage SEAMapImage;
 
 
 	void SetupSEAsianMap();
+	void SetupStressMap();
+
+
+	int AppScreenWidth, AppScreenHeight;
 
 	void setup();
 	void update();
