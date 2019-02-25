@@ -37,9 +37,6 @@
     <ClCompile Include="..\..\..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
-    <ClCompile Include="DataStructs\Kinematic.cpp">
-      <Filter>src\DataStructs</Filter>
-    </ClCompile>
     <ClCompile Include="Helpers\ofAppHelpers.cpp">
       <Filter>src\Helpers</Filter>
     </ClCompile>
@@ -64,9 +61,6 @@
     <ClCompile Include="Steering\Matching.cpp">
       <Filter>src\Steering</Filter>
     </ClCompile>
-    <ClCompile Include="DataStructs\Crumb.cpp">
-      <Filter>src\DataStructs</Filter>
-    </ClCompile>
     <ClCompile Include="AssignmentApps\ofApp.cpp">
       <Filter>src\AssignmentApps\Assignment1</Filter>
     </ClCompile>
@@ -77,7 +71,19 @@
       <Filter>src\DataStructs\Graph</Filter>
     </ClCompile>
     <ClCompile Include="Helpers\Assignment2Helpers.cpp">
-      <Filter>src\Helpers</Filter>
+      <Filter>src\AssignmentApps\Assignment2</Filter>
+    </ClCompile>
+    <ClCompile Include="Pathfinding\Pathfinding.cpp">
+      <Filter>src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructs\Crumb.cpp">
+      <Filter>src\DataStructs\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructs\Kinematic.cpp">
+      <Filter>src\DataStructs\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="DataStructs\PriorityQueue.cpp">
+      <Filter>src\DataStructs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +120,12 @@
     <Filter Include="src\DataStructs\Graph">
       <UniqueIdentifier>{f142ce5f-b77d-40fd-867e-ad8de881cbcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Pathfinding">
+      <UniqueIdentifier>{aa007bcf-326e-418d-9b7e-481dd366fc30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DataStructs\Boids">
+      <UniqueIdentifier>{b5a56a9d-e1cd-4f5f-be26-e89330592e29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxBaseGui.h">
@@ -149,9 +161,6 @@
     <ClInclude Include="..\..\..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
-    <ClInclude Include="DataStructs\Kinematic.h">
-      <Filter>src\DataStructs</Filter>
-    </ClInclude>
     <ClInclude Include="Helpers\ofAppHelpers.h">
       <Filter>src\Helpers</Filter>
     </ClInclude>
@@ -176,9 +185,6 @@
     <ClInclude Include="Steering\Matching.h">
       <Filter>src\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="DataStructs\Crumb.h">
-      <Filter>src\DataStructs</Filter>
-    </ClInclude>
     <ClInclude Include="AssignmentApps\ofApp.h">
       <Filter>src\AssignmentApps\Assignment1</Filter>
     </ClInclude>
@@ -195,7 +201,19 @@
       <Filter>src\DataStructs\Graph</Filter>
     </ClInclude>
     <ClInclude Include="Helpers\Assignment2Helpers.h">
-      <Filter>src\Helpers</Filter>
+      <Filter>src\AssignmentApps\Assignment2</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\Pathfinding.h">
+      <Filter>src\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructs\Kinematic.h">
+      <Filter>src\DataStructs\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructs\Crumb.h">
+      <Filter>src\DataStructs\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructs\PriorityQueue.h">
+      <Filter>src\DataStructs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

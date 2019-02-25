@@ -59,6 +59,18 @@ public:
 #endif
 	}
 
+	DirectedWeightedEdge(float InitCost)
+	{
+		Source = Node(-1);
+		Sink = Node(-1);
+		Cost = InitCost;
+#ifdef _DEBUG 
+		StartPosition = ofVec2f::zero();
+		EndPosition = ofVec2f::zero();
+		Color = ofColor::black;
+#endif
+	}
+
 	DirectedWeightedEdge(Node InitSource, Node InitSink, float InitCost)
 	{
 		Source = InitSource;

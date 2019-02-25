@@ -7,7 +7,6 @@
 #include "ofMath.h"
 #include <cmath>
 
-
 //Graph
 #include "DataStructs\Graph\GraphStructs.h"
 
@@ -22,7 +21,7 @@ public:
 
 	static void ConstructSEAMap(DirectedWeightedGraph * pAppGraph);
 	
-	static void ConstructStressMap(DirectedWeightedGraph * pAppGraph, int ApproxNumberOfNodes, int Width, int Height);
+	static void ConstructStressMap(DirectedWeightedGraph * pAppGraph, int ApproxNumberOfNodes, int Width, int Height, int Connectivity);
 	
 
 

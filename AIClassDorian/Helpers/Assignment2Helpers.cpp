@@ -39,9 +39,8 @@ void Assignment2Helpers::ConstructSEAMap(DirectedWeightedGraph * pAppGraph)
 
 
 //Uses a localized map, then quantizes to graph space
-void Assignment2Helpers::ConstructStressMap(DirectedWeightedGraph * pAppGraph, int ApproxNumberOfNodes, int Width, int Height)
+void Assignment2Helpers::ConstructStressMap(DirectedWeightedGraph * pAppGraph, int ApproxNumberOfNodes, int Width, int Height, int Connectivity)
 {
-	//pAppGraph->GraphMap[NumberOfNodes - 1] = std::vector<DirectedWeightedEdge>(2);
 	int SqRt = sqrt(ApproxNumberOfNodes);
 	float XScale = Width / SqRt;
 	float YScale = Height / SqRt;
@@ -54,7 +53,7 @@ void Assignment2Helpers::ConstructStressMap(DirectedWeightedGraph * pAppGraph, i
 		{
 			
 			LastNode = Node(count, ofVec2f(j*XScale, i*YScale), 3);
-			pAppGraph->GraphMap[count] = std::vector<DirectedWeightedEdge>(2);
+			pAppGraph->GraphMap[count] = std::vector<DirectedWeightedEdge>(Connectivity);
 			pAppGraph->Nodes.push_back(LastNode);
 			count++;
 		}
@@ -64,18 +63,19 @@ void Assignment2Helpers::ConstructStressMap(DirectedWeightedGraph * pAppGraph, i
 	{
 		for (int j = 0; j < SqRt; j++)
 		{
-			int randomY = (((int)ofRandom(-2, 2))) * SqRt;
-			int randomX = ((int)ofRandom(-3, 3));
-			//int randomX = -30;
-			//int randomY = 0;
-			pAppGraph->GraphMap[count][0] = DirectedWeightedEdge(pAppGraph->Nodes[count], pAppGraph->Nodes[ofClamp(count + randomX + randomY, 0, SqRt*SqRt-1)], rand() % 10);
-			pAppGraph->Edges.push_back(pAppGraph->GraphMap[count][0]);
-
-			randomY = (((int)ofRandom(-2, 2))) * SqRt;
-			randomX = ((int)ofRandom(-3, 3));
-
-			pAppGraph->GraphMap[count][1] = DirectedWeightedEdge(pAppGraph->Nodes[count], pAppGraph->Nodes[ofClamp(count + randomX + randomY, 0, SqRt*SqRt - 1)], rand() % 10);
-			pAppGraph->Edges.push_back(pAppGraph->GraphMap[count][1]);
+			int randomY;
+			int randomX;
+			for (int k = 0; k < Connectivity; k++)
+			{
+				randomY = (((int)ofRandom(-2, 2))) * SqRt;
+				randomX = ((int)ofRandom(-2, 2));
+				if ((count % SqRt == 0 && randomX + randomY <= 0) || (count % SqRt == SqRt-1 && randomX + randomY >= 0))
+				{
+					continue;
+				}
+				pAppGraph->GraphMap[count][k] = DirectedWeightedEdge(pAppGraph->Nodes[count], pAppGraph->Nodes[ofClamp(count + randomX + randomY, 0, SqRt*SqRt - 1)], rand() % 10);
+				pAppGraph->Edges.push_back(pAppGraph->GraphMap[count][k]);
+			}
 			count++;
 		}
 	}
@@ -85,18 +85,20 @@ void Assignment2Helpers::ConstructStressMap(DirectedWeightedGraph * pAppGraph, i
 
 void Assignment2Helpers::DrawGraph(DirectedWeightedGraph * pAppGraph)
 {
-	ofSetColor(ofColor::black);
-	ofSetLineWidth(1);
 	if (pAppGraph->Edges.size() > 0)
 	{
 		for (int i = 0; i != (pAppGraph->Edges.size()); i++)
 		{
 			if (pAppGraph->Edges[i].GetCost() > 0)
 			{
+				ofSetColor(pAppGraph->Edges[i].Color == ofColor::black ? ofColor::black : ofColor(25.5 * pAppGraph->Edges[i].GetCost() / 10.0f, 255 / pAppGraph->Edges[i].GetCost(), 0));
+				ofSetLineWidth(5/pAppGraph->Edges[i].GetCost());
 				ofDrawLine(pAppGraph->Edges[i].StartPosition, pAppGraph->Edges[i].EndPosition);
 			}
 		}
 	}
+	ofSetColor(ofColor::black);
+
 	if (pAppGraph->Nodes.size() > 0)
 	{
 		for (int j = 0; j < pAppGraph->Nodes.size(); j++)

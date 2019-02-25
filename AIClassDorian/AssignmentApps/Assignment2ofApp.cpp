@@ -19,6 +19,19 @@ void Assignment2ofApp::setup()
 	GUI.add(SEAMap.setup("Southeast Asian Test Map"));
 	GUI.add(HeavyMapTest.setup("Heavy Map Test"));
 	GUI.add(Clear.setup("Clear Mode"));
+
+
+	/*PriorityQueue<DirectedWeightedEdge> PQ;
+	QueueElement<DirectedWeightedEdge> temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
+
+	PQ.Push(temp);
+	temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
+	PQ.Push(temp);
+	temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
+	PQ.Push(temp);
+	temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
+	PQ.Push(temp);*/
+
 }
 
 void Assignment2ofApp::SetupSEAsianMap()
@@ -30,7 +43,7 @@ void Assignment2ofApp::SetupSEAsianMap()
 void Assignment2ofApp::SetupStressMap()
 {
 	AppMode = StressTestMode;
-	Assignment2Helpers::ConstructStressMap(pAppGraph, 3000, AppScreenWidth, AppScreenHeight);
+	Assignment2Helpers::ConstructStressMap(pAppGraph, 1000, AppScreenWidth, AppScreenHeight, 5);
 }
 
 //--------------------------------------------------------------

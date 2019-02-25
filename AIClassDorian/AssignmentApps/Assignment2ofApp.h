@@ -9,7 +9,11 @@
 #include "Helpers\ofAppHelpers.h"
 #include "Helpers\Assignment2Helpers.h"
 #include "Helpers\SetupHelpers.h"
+#include "DataStructs\PriorityQueue.h"
+
+//Math
 #include "ofVec2f.h"
+
 
 //Graph
 #include "DataStructs\Graph\GraphStructs.h"
