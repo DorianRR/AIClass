@@ -31,19 +31,26 @@ void Assignment2ofApp::setup()
 	PQ.Push(temp);
 	temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
 	PQ.Push(temp);*/
+	Navigation::Init(this);
 
 }
 
 void Assignment2ofApp::SetupSEAsianMap()
 {
+	pAppGraph = new DirectedWeightedGraph(0);
+
 	AppMode = SEAMapMode;
 	Assignment2Helpers::ConstructSEAMap(pAppGraph);
 }
 
 void Assignment2ofApp::SetupStressMap()
 {
+	pAppGraph = new DirectedWeightedGraph(0);
+
 	AppMode = StressTestMode;
-	Assignment2Helpers::ConstructStressMap(pAppGraph, 1000, AppScreenWidth, AppScreenHeight, 5);
+	//Assignment2Helpers::ConstructStressMap(pAppGraph, 1000, AppScreenWidth, AppScreenHeight, 5);
+	Navigation::NavMesh::GenerateNavMesh();
+
 }
 
 //--------------------------------------------------------------
@@ -91,7 +98,13 @@ void Assignment2ofApp::mouseMoved(int x, int y) {}
 void Assignment2ofApp::mouseDragged(int x, int y, int button) {}
 
 //--------------------------------------------------------------
-void Assignment2ofApp::mousePressed(int x, int y, int button) {}
+void Assignment2ofApp::mousePressed(int x, int y, int button) 
+{
+	if (pAppGraph)
+	{
+		Navigation::AStar::GetPath(ofVec2f::zero(), ofVec2f(x, y));
+	}
+}
 
 //--------------------------------------------------------------
 void Assignment2ofApp::mouseReleased(int x, int y, int button) {}
@@ -117,3 +130,12 @@ void Assignment2ofApp::ClearMode()
 	AppMode = MenuMode;
 	pAppGraph->Clear();
 }
+
+//--------------------------------------------------------------
+Assignment2ofApp::~Assignment2ofApp()
+{
+	if (pAppGraph) { delete(pAppGraph); }
+}
+
+
+

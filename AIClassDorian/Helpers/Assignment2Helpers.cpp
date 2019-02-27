@@ -85,14 +85,25 @@ void Assignment2Helpers::ConstructStressMap(DirectedWeightedGraph * pAppGraph, i
 
 void Assignment2Helpers::DrawGraph(DirectedWeightedGraph * pAppGraph)
 {
+	ofSetColor(ofColor::black);
 	if (pAppGraph->Edges.size() > 0)
 	{
 		for (int i = 0; i != (pAppGraph->Edges.size()); i++)
 		{
 			if (pAppGraph->Edges[i].GetCost() > 0)
 			{
-				ofSetColor(pAppGraph->Edges[i].Color == ofColor::black ? ofColor::black : ofColor(25.5 * pAppGraph->Edges[i].GetCost() / 10.0f, 255 / pAppGraph->Edges[i].GetCost(), 0));
-				ofSetLineWidth(5/pAppGraph->Edges[i].GetCost());
+				//ofSetColor(pAppGraph->Edges[i].Color == ofColor::black ? ofColor::black : ofColor(25.5 * pAppGraph->Edges[i].GetCost() / 10.0f, 255 / pAppGraph->Edges[i].GetCost(), 0));
+				//ofSetLineWidth(5/pAppGraph->Edges[i].GetCost());
+				if (pAppGraph->Edges[i].Color != ofColor::black)
+				{
+					ofSetColor(ofColor::green);
+					ofSetLineWidth(3);
+				}
+				else
+				{
+					ofSetColor(ofColor::black);
+					ofSetLineWidth(1);
+				}
 				ofDrawLine(pAppGraph->Edges[i].StartPosition, pAppGraph->Edges[i].EndPosition);
 			}
 		}

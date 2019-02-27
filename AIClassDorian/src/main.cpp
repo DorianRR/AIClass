@@ -21,6 +21,7 @@ int main( ){
 	
 	//Assignment 2
 	ofRunApp(new Assignment2ofApp());
+	
 
 }
 

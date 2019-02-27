@@ -131,7 +131,6 @@ public:
 
 };
 
-
 inline float DirectedWeightedEdge::GetCost()
 {
 	return Cost;

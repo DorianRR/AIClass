@@ -47,6 +47,8 @@ inline bool operator>(const PQTType& left, const PQTType& right)
 }
 
 
+
+
 //The actual queue
 template<typename PQTType>
 struct PriorityQueue
@@ -55,10 +57,11 @@ public:
 	void Push(const QueueElement<PQTType> NewElement);
 	QueueElement<PQTType> Pop();
 
-
 	const PriorityQueue Get() { return const Queue };
 
-private:
+
+	int Size();
+	
 	std::vector<QueueElement<PQTType>> Queue;
 };
 
@@ -74,7 +77,15 @@ template<typename PQTType>
 QueueElement<PQTType> PriorityQueue<PQTType>::Pop()
 {
 	QueueElement<PQTType> temp = Queue[0];
-	Queue.pop_back();
+	Queue.erase(Queue.begin());
+	Queue.shrink_to_fit();
 	return(temp);
+}
+
+
+template<typename PQTType>
+inline int PriorityQueue<PQTType>::Size()
+{
+	return Queue.size();
 }
 

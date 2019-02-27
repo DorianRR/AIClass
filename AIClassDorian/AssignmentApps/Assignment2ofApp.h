@@ -17,7 +17,7 @@
 
 //Graph
 #include "DataStructs\Graph\GraphStructs.h"
-
+#include "Pathfinding\Pathfinding.h"
 
 
 
@@ -25,6 +25,8 @@
 
 class Assignment2ofApp : public ofBaseApp {
 public:
+	~Assignment2ofApp();
+
 
 	enum Mode
 	{
@@ -32,7 +34,9 @@ public:
 	};
 
 	Mode AppMode;
-	DirectedWeightedGraph * pAppGraph = new DirectedWeightedGraph(0);
+	DirectedWeightedGraph * pAppGraph;// = new DirectedWeightedGraph(0);
+	//std::vector<DirectedWeightedGraph> DrawGraphs;
+
 
 	ofImage SEAMapImage;
 

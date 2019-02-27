@@ -1,20 +1,60 @@
 #pragma once
 
+#include "ofVec2f.h"
+
 //Graph
 #include "DataStructs/Graph/GraphStructs.h"
 
-class AStar
+//Priority Queue
+#include "DataStructs/PriorityQueue.h"
+
+class Assignment2ofApp; 
+
+namespace Navigation
 {
-	static std::vector<DirectedWeightedEdge> GetPath(DirectedWeightedGraph * pAppGraph, Node Start, Node Target);
+
+	static const Assignment2ofApp * Context;
+
+	ofVec2f Localize(int Node);
+	int Quantize(ofVec2f InputPoint);
+
+	//Not implemented
+	bool Validate(const DirectedWeightedGraph * GraphToValidate);
+
+
+	void Init(const Assignment2ofApp * WorldContext);
+
+	class NavMesh
+	{
+	public:
+
+		static void GenerateNavMesh();
+
+		//Not implemented
+		static void GenerateValidNavMesh();
+
+	};
 
 
 
-};
+	class AStar
+	{
+	public:
+
+		static std::vector<DirectedWeightedEdge> GetPath(ofVec2f StartingWorldPoint, ofVec2f TargetWorldPoint);
+	};
 
 
-class Dijstra
-{
-	static std::vector<DirectedWeightedEdge> GetPath(DirectedWeightedGraph * pAppGraph, Node Start, Node Target);
+	class Dijstra
+	{
+	public:
 
+		static std::vector<DirectedWeightedEdge> GetPath(ofVec2f StartingWorldPoint, ofVec2f TargetWorldPoint);
+	};
 
-};
+	namespace Heuristics
+	{
+		float GetBirdsPath(Node Start, Node Goal);
+	}
+
+}
