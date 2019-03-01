@@ -4,20 +4,18 @@
 #include "ofVec2f.h"
 #include "ofColor.h"
 
+#define DEBUG_DRAW
 
 struct Node
 {
 public:
 	Node() { ID = 0; };
-
 	Node(int InitID) { ID = InitID; };
-
 	Node(int InitID, ofVec2f InitPostion)
 	{
 		ID = InitID;
 		Position = InitPostion;
 	}
-
 	Node(int InitID, ofVec2f InitPostion, int SetRadius)
 	{
 		ID = InitID;
@@ -27,13 +25,12 @@ public:
 
 	int GetID();
 
-
 private:
 	int ID;
 
 public:
 	//Visual information, for drawing and debugging
-#ifdef _DEBUG
+#ifdef DEBUG_DRAW
 	ofVec2f Position;
 	float Radius = 6;
 	ofColor Color;
@@ -46,37 +43,34 @@ public:
 struct DirectedWeightedEdge
 {
 public:
-
 	DirectedWeightedEdge()
 	{
 		Source = Node(-1);
 		Sink = Node(-1);
 		Cost = 0;
-#ifdef _DEBUG 
+#ifdef DEBUG_DRAW 
 		StartPosition = ofVec2f::zero();
 		EndPosition = ofVec2f::zero();
 		Color = ofColor::black;
 #endif
 	}
-
 	DirectedWeightedEdge(float InitCost)
 	{
 		Source = Node(-1);
 		Sink = Node(-1);
 		Cost = InitCost;
-#ifdef _DEBUG 
+#ifdef DEBUG_DRAW 
 		StartPosition = ofVec2f::zero();
 		EndPosition = ofVec2f::zero();
 		Color = ofColor::black;
 #endif
 	}
-
 	DirectedWeightedEdge(Node InitSource, Node InitSink, float InitCost)
 	{
 		Source = InitSource;
 		Sink = InitSink;
 		Cost = InitCost;
-#ifdef _DEBUG 
+#ifdef DEBUG_DRAW 
 		StartPosition = InitSource.Position;
 		EndPosition = InitSink.Position;
 		Color = ofColor::black;
@@ -94,10 +88,11 @@ private:
 
 public:
 //Visual information, for drawing and debugging
-#ifdef _DEBUG 
+#ifdef DEBUG_DRAW 
 	ofVec2f StartPosition, EndPosition;
 	ofColor Color;
 #endif
+
 };
 
 
@@ -111,11 +106,10 @@ struct NodeRecord
 class DirectedWeightedGraph
 {
 public:
-
-
 	DirectedWeightedGraph(int NumberOfEdges)
 	{
-		Edges.reserve(NumberOfEdges);
+		Nodes.reserve(NumberOfEdges);
+		Edges.reserve(8 * NumberOfEdges);
 	}
 	
 	void Clear()
@@ -128,7 +122,6 @@ public:
 	std::vector<Node> Nodes;
 	std::vector<DirectedWeightedEdge> Edges;
 	std::map<int, std::vector<DirectedWeightedEdge>> GraphMap;
-
 };
 
 inline float DirectedWeightedEdge::GetCost()

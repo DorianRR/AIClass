@@ -13,26 +13,17 @@ void Assignment2ofApp::setup()
 
 	SEAMap.addListener(this, &Assignment2ofApp::SetupSEAsianMap);
 	HeavyMapTest.addListener(this, &Assignment2ofApp::SetupStressMap);
+	FlatNavmesh.addListener(this, &Assignment2ofApp::SetupFlatNavmesh);
 	Clear.addListener(this, &Assignment2ofApp::ClearMode);
 	GUI.setup();
 
 	GUI.add(SEAMap.setup("Southeast Asian Test Map"));
 	GUI.add(HeavyMapTest.setup("Heavy Map Test"));
+	GUI.add(FlatNavmesh.setup("FlatNavMesh"));
 	GUI.add(Clear.setup("Clear Mode"));
 
 
-	/*PriorityQueue<DirectedWeightedEdge> PQ;
-	QueueElement<DirectedWeightedEdge> temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
-
-	PQ.Push(temp);
-	temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
-	PQ.Push(temp);
-	temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
-	PQ.Push(temp);
-	temp = QueueElement<DirectedWeightedEdge>(DirectedWeightedEdge(rand() % 10), rand() % 10);
-	PQ.Push(temp);*/
 	Navigation::Init(this);
-
 }
 
 void Assignment2ofApp::SetupSEAsianMap()
@@ -45,13 +36,23 @@ void Assignment2ofApp::SetupSEAsianMap()
 
 void Assignment2ofApp::SetupStressMap()
 {
-	pAppGraph = new DirectedWeightedGraph(0);
+	pAppGraph = new DirectedWeightedGraph(1000);
+
+	AppMode = StressTestMode;
+	Assignment2Helpers::ConstructStressMap(pAppGraph, 1000, AppScreenWidth, AppScreenHeight, 5);
+
+}
+
+void Assignment2ofApp::SetupFlatNavmesh()
+{
+	pAppGraph = new DirectedWeightedGraph(1000);
 
 	AppMode = StressTestMode;
 	//Assignment2Helpers::ConstructStressMap(pAppGraph, 1000, AppScreenWidth, AppScreenHeight, 5);
 	Navigation::NavMesh::GenerateNavMesh();
 
 }
+
 
 //--------------------------------------------------------------
 void Assignment2ofApp::update() {}
@@ -100,7 +101,7 @@ void Assignment2ofApp::mouseDragged(int x, int y, int button) {}
 //--------------------------------------------------------------
 void Assignment2ofApp::mousePressed(int x, int y, int button) 
 {
-	if (pAppGraph)
+	if (pAppGraph && AppMode == StressTestMode)
 	{
 		Navigation::AStar::GetPath(ofVec2f::zero(), ofVec2f(x, y));
 	}

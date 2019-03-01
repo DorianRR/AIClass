@@ -16,7 +16,6 @@ ofVec2f Navigation::Localize(const int Node)
 
 	float x = ((SqRt-1) - (Node % (SqRt - 1))) * Context->AppScreenWidth / (SqRt - 1);
 
-	//float x = (Node % (SqRt - 1)) * Context->AppScreenWidth / (SqRt - 1);
 	int temp = ((SqRt - 1) - (Node % (SqRt - 1)));
 	float y = (Node - temp) / (SqRt - 1) * Context->AppScreenHeight / (SqRt - 1);
 
@@ -37,10 +36,10 @@ void NavMesh::GenerateNavMesh()
 {
 
 	DirectedWeightedGraph * pAppGraph = Context->pAppGraph;
-	int SqRt = sqrt(500);
+	int SqRt = sqrt(1000);
 	float XScale = Context->AppScreenWidth / SqRt;
 	float YScale = Context->AppScreenHeight / SqRt;
-	float DiagonalScale = sqrt((XScale*XScale)*(YScale*YScale));
+	float DiagonalScale = sqrt((XScale*XScale)+(YScale*YScale));
 
 	Node LastNode = Node(-1, ofVec2f(0, 0), 2);
 	int count = 0;
@@ -107,11 +106,6 @@ void NavMesh::GenerateNavMesh()
 	}
 }
 
-void NavMesh::GenerateValidNavMesh()
-{
-	assert(false);
-}
-
 std::vector<DirectedWeightedEdge> AStar::GetPath(ofVec2f StartingWorldPoint, ofVec2f TargetWorldPoint)
 {
 	Node GoalNode = Context->pAppGraph->Nodes[Quantize(TargetWorldPoint)];
@@ -139,7 +133,7 @@ std::vector<DirectedWeightedEdge> AStar::GetPath(ofVec2f StartingWorldPoint, ofV
 			if (temp.Element.GetID() == -1) continue;
 			if (!(std::find(ClosedList.begin(), ClosedList.end(), temp.Element.GetID()) != ClosedList.end() || std::find(StdFringe.begin(), StdFringe.end(), temp.Element.GetID()) != StdFringe.end()))
 			{
-				temp.mPriority = Heuristics::GetBirdsPath(temp.Element, GoalNode);
+				temp.mPriority = Heuristics::GetBirdsPath(temp.Element, GoalNode) + Context->pAppGraph->GraphMap[CurrentNode.GetID()][i].GetCost();
 				StdFringe.push_back(temp.Element.GetID());
 				Fringe.Push(temp);
 			}
@@ -161,7 +155,6 @@ std::vector<DirectedWeightedEdge> AStar::GetPath(ofVec2f StartingWorldPoint, ofV
 		Context->pAppGraph->Edges.push_back(PathEdge);
 	}
 
-	//assert(false);
 	return tempV;
 
 }

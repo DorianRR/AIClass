@@ -12,7 +12,6 @@ class Assignment2ofApp;
 
 namespace Navigation
 {
-
 	static const Assignment2ofApp * Context;
 
 	ofVec2f Localize(int Node);
@@ -27,20 +26,12 @@ namespace Navigation
 	class NavMesh
 	{
 	public:
-
 		static void GenerateNavMesh();
-
-		//Not implemented
-		static void GenerateValidNavMesh();
-
 	};
-
-
 
 	class AStar
 	{
 	public:
-
 		static std::vector<DirectedWeightedEdge> GetPath(ofVec2f StartingWorldPoint, ofVec2f TargetWorldPoint);
 	};
 
@@ -48,13 +39,13 @@ namespace Navigation
 	class Dijstra
 	{
 	public:
-
 		static std::vector<DirectedWeightedEdge> GetPath(ofVec2f StartingWorldPoint, ofVec2f TargetWorldPoint);
 	};
 
 	namespace Heuristics
 	{
 		float GetBirdsPath(Node Start, Node Goal);
-	}
 
+		float GetManhattanDistance(Node Start, Node Goal);
+	}
 }

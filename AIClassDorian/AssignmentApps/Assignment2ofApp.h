@@ -34,7 +34,7 @@ public:
 	};
 
 	Mode AppMode;
-	DirectedWeightedGraph * pAppGraph;// = new DirectedWeightedGraph(0);
+	DirectedWeightedGraph * pAppGraph;
 	//std::vector<DirectedWeightedGraph> DrawGraphs;
 
 
@@ -43,6 +43,7 @@ public:
 
 	void SetupSEAsianMap();
 	void SetupStressMap();
+	void SetupFlatNavmesh();
 
 
 	int AppScreenWidth, AppScreenHeight;
@@ -71,8 +72,9 @@ public:
 	ofxButton Clear;
 	ofxButton SEAMap;
 	ofxButton HeavyMapTest;
-	//ofxButton FlockButton;
+	ofxButton FlatNavmesh;
 
+	//ofxButton FlockButton;
 	
 
 };
