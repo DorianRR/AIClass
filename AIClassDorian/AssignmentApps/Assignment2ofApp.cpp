@@ -11,13 +11,11 @@ void Assignment2ofApp::setup()
 	SEAMapImage.load("SEAMap.jpg");
 
 
-	SEAMap.addListener(this, &Assignment2ofApp::SetupSEAsianMap);
 	HeavyMapTest.addListener(this, &Assignment2ofApp::SetupStressMap);
 	FlatNavmesh.addListener(this, &Assignment2ofApp::SetupFlatNavmesh);
 	Clear.addListener(this, &Assignment2ofApp::ClearMode);
 	GUI.setup();
 
-	GUI.add(SEAMap.setup("Southeast Asian Test Map"));
 	GUI.add(HeavyMapTest.setup("Heavy Map Test"));
 	GUI.add(FlatNavmesh.setup("FlatNavMesh"));
 	GUI.add(Clear.setup("Clear Mode"));

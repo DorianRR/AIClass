@@ -35,7 +35,6 @@ public:
 
 	Mode AppMode;
 	DirectedWeightedGraph * pAppGraph;
-	//std::vector<DirectedWeightedGraph> DrawGraphs;
 
 
 	ofImage SEAMapImage;

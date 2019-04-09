@@ -20,7 +20,6 @@ namespace Navigation
 	//Not implemented
 	bool Validate(const DirectedWeightedGraph * GraphToValidate);
 
-
 	void Init(const Assignment2ofApp * WorldContext);
 
 	class NavMesh
@@ -39,6 +38,7 @@ namespace Navigation
 	class Dijstra
 	{
 	public:
+		//Not implemented
 		static std::vector<DirectedWeightedEdge> GetPath(ofVec2f StartingWorldPoint, ofVec2f TargetWorldPoint);
 	};
 
@@ -46,6 +46,7 @@ namespace Navigation
 	{
 		float GetBirdsPath(Node Start, Node Goal);
 
+		//Not Implemented
 		float GetManhattanDistance(Node Start, Node Goal);
 	}
 }
